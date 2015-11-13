@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name"),
     @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price"),
     @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description"),
-    @NamedQuery(name = "Item.findByITEMCATEGORYid", query = "SELECT i FROM Item i WHERE i.iTEMCATEGORYid = :iTEMCATEGORYid")})
+    @NamedQuery(name = "Item.findByItemCategoryId", query = "SELECT i FROM Item i WHERE i.itemCategoryId = :itemCategoryId")})
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,14 +55,14 @@ public class Item implements Serializable {
     private String description;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ITEM_CATEGORY_id")
-    private int iTEMCATEGORYid;
-    @JoinColumn(name = "ORDER_id", referencedColumnName = "id")
+    @Column(name = "item_category_id")
+    private int itemCategoryId;
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Order oRDERid;
-    @JoinColumn(name = "RESTAURANT_id", referencedColumnName = "id")
+    private Order orderId;
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Restaurant rESTAURANTid;
+    private Restaurant restaurantId;
 
     public Item() {
     }
@@ -71,11 +71,11 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, String price, int iTEMCATEGORYid) {
+    public Item(Integer id, String name, String price, int itemCategoryId) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.iTEMCATEGORYid = iTEMCATEGORYid;
+        this.itemCategoryId = itemCategoryId;
     }
 
     public Integer getId() {
@@ -110,28 +110,28 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public int getITEMCATEGORYid() {
-        return iTEMCATEGORYid;
+    public int getItemCategoryId() {
+        return itemCategoryId;
     }
 
-    public void setITEMCATEGORYid(int iTEMCATEGORYid) {
-        this.iTEMCATEGORYid = iTEMCATEGORYid;
+    public void setItemCategoryId(int itemCategoryId) {
+        this.itemCategoryId = itemCategoryId;
     }
 
-    public Order getORDERid() {
-        return oRDERid;
+    public Order getOrderId() {
+        return orderId;
     }
 
-    public void setORDERid(Order oRDERid) {
-        this.oRDERid = oRDERid;
+    public void setOrderId(Order orderId) {
+        this.orderId = orderId;
     }
 
-    public Restaurant getRESTAURANTid() {
-        return rESTAURANTid;
+    public Restaurant getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRESTAURANTid(Restaurant rESTAURANTid) {
-        this.rESTAURANTid = rESTAURANTid;
+    public void setRestaurantId(Restaurant restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     @Override

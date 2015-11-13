@@ -77,10 +77,10 @@ public class User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "address")
     private String address;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uSERid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Review> reviewCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uSERid")
-    private Collection<Order> orderCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Order> order1Collection;
 
     public User() {
     }
@@ -165,12 +165,12 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Order> getOrderCollection() {
-        return orderCollection;
+    public Collection<Order> getOrder1Collection() {
+        return order1Collection;
     }
 
-    public void setOrderCollection(Collection<Order> orderCollection) {
-        this.orderCollection = orderCollection;
+    public void setOrder1Collection(Collection<Order> order1Collection) {
+        this.order1Collection = order1Collection;
     }
 
     @Override

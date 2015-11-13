@@ -54,12 +54,12 @@ public class Review implements Serializable {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @JoinColumn(name = "RESTAURANT_id", referencedColumnName = "id")
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Restaurant rESTAURANTid;
-    @JoinColumn(name = "USER_id", referencedColumnName = "id")
+    private Restaurant restaurantId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private User uSERid;
+    private User userId;
 
     public Review() {
     }
@@ -106,20 +106,20 @@ public class Review implements Serializable {
         this.date = date;
     }
 
-    public Restaurant getRESTAURANTid() {
-        return rESTAURANTid;
+    public Restaurant getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRESTAURANTid(Restaurant rESTAURANTid) {
-        this.rESTAURANTid = rESTAURANTid;
+    public void setRestaurantId(Restaurant restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
-    public User getUSERid() {
-        return uSERid;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUSERid(User uSERid) {
-        this.uSERid = uSERid;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
