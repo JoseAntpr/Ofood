@@ -71,11 +71,11 @@ public class Restaurant implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "category")
     private String category;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rESTAURANTid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
     private Collection<Item> itemCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rESTAURANTid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
     private Collection<Review> reviewCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rESTAURANTid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
     private Collection<Order> order1Collection;
 
     public Restaurant() {

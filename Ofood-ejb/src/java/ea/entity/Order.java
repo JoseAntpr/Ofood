@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Order.findByDate", query = "SELECT o FROM Order o WHERE o.date = :date"),
     @NamedQuery(name = "Order.findByState", query = "SELECT o FROM Order o WHERE o.state = :state"),
     @NamedQuery(name = "Order.findByBill", query = "SELECT o FROM Order o WHERE o.bill = :bill"),
-    @NamedQuery(name = "Order.findByAddres", query = "SELECT o FROM Order o WHERE o.addres = :addres")})
+    @NamedQuery(name = "Order.findByAddress", query = "SELECT o FROM Order o WHERE o.address = :address")})
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,16 +64,16 @@ public class Order implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "addres")
-    private String addres;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oRDERid")
+    @Column(name = "address")
+    private String address;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     private Collection<Item> itemCollection;
-    @JoinColumn(name = "RESTAURANT_id", referencedColumnName = "id")
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Restaurant rESTAURANTid;
-    @JoinColumn(name = "USER_id", referencedColumnName = "id")
+    private Restaurant restaurantId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private User uSERid;
+    private User userId;
 
     public Order() {
     }
@@ -82,12 +82,12 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Order(Integer id, Date date, String state, double bill, String addres) {
+    public Order(Integer id, Date date, String state, double bill, String address) {
         this.id = id;
         this.date = date;
         this.state = state;
         this.bill = bill;
-        this.addres = addres;
+        this.address = address;
     }
 
     public Integer getId() {
@@ -122,12 +122,12 @@ public class Order implements Serializable {
         this.bill = bill;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @XmlTransient
@@ -139,20 +139,20 @@ public class Order implements Serializable {
         this.itemCollection = itemCollection;
     }
 
-    public Restaurant getRESTAURANTid() {
-        return rESTAURANTid;
+    public Restaurant getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRESTAURANTid(Restaurant rESTAURANTid) {
-        this.rESTAURANTid = rESTAURANTid;
+    public void setRestaurantId(Restaurant restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
-    public User getUSERid() {
-        return uSERid;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUSERid(User uSERid) {
-        this.uSERid = uSERid;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
