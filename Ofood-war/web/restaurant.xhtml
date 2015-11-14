@@ -29,7 +29,7 @@ and open the template in the editor.
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Kreon:300,400,700'/>
 
         <!-- js -->
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="resources/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </h:head>
     <h:body>
         <!--data-spy="scroll" data-target="#navbar" data-offset="120"-->
@@ -37,56 +37,7 @@ and open the template in the editor.
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-        <div id="menu" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header visible-xs">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><h2>oFood!</h2></a>
-                </div><!-- navbar-header -->
-
-                <div id="navbar" class="navbar-collapse collapse">
-                    <div class="hidden-xs" id="logo"><a href="#header">
-                            <img src="resources/img/logo.png" alt=""/>
-                        </a></div>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#story">Story</a></li>
-                        <li><a href="#reservation">Reservation</a></li>
-                        <li><a href="#chefs">Our Chefs</a></li>
-
-
-                        <li><a href="#facts">Facts</a></li>
-                        <li><a href="#food-menu">Food Menu</a></li>
-                        <!--<li><a href="#special-offser">Iniciar sesión...</a></li>-->
-
-                        <li class="dropdown" id="fat-menu"><a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">Iniciar sesión...<b class="caret"></b></a>
-                            <ul class="dropdown-menu" id="dropdown-menu" aria-labelledby="drop3" role="menu" style="padding-top: 20px; padding-bottom: 20px;">                    
-                                <h:form >                                 
-                                    <li class="menu-boton" role="presentation"><h:button class="boton-registro" value="CREAR UNA CUENTA"></h:button></li>
-                                </h:form>
-                                <h6 class="account-drop-heading account-drop-log-in-heading">
-                                    <span class="text">¿Tienes una cuenta? Logeate</span>
-                                </h6>
-                                <h:form >
-                                    <li class="menu-usuario" role="presentation"><h:inputText class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Usuario" ></h:inputText></li>
-                                    <li class="menu-usuario" role="presentation"><h:inputSecret class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Contraseña" ></h:inputSecret></li>
-                                    <li class="menu-boton" role="presentation"><h:button class="boton-usuario" value="INICIAR SESIÓN"></h:button></li>
-                                </h:form>
-                            </ul>
-                        </li>
-                        
-                        <!--fix for scroll spy active menu element-->
-                        <li style="display:none;"><a href="#header"></a></li>
-
-                    </ul>
-                </div><!--/.navbar-collapse -->
-            </div><!-- container -->
-        </div><!-- menu -->
+        <ui:include src="menu.xhtml"/>
         
         <div id="facts" class="parallax parallax2 facts">
             <div class="container inner">
