@@ -79,6 +79,8 @@ public class Restaurant implements Serializable {
     private Collection<PurchaseOrder> purchaseOrderCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
     private Collection<Review> reviewCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
+    private Collection<ItemCategory> itemCategoryCollection;
 
     public Restaurant() {
     }
@@ -176,6 +178,15 @@ public class Restaurant implements Serializable {
 
     public void setReviewCollection(Collection<Review> reviewCollection) {
         this.reviewCollection = reviewCollection;
+    }
+
+    @XmlTransient
+    public Collection<ItemCategory> getItemCategoryCollection() {
+        return itemCategoryCollection;
+    }
+
+    public void setItemCategoryCollection(Collection<ItemCategory> itemCategoryCollection) {
+        this.itemCategoryCollection = itemCategoryCollection;
     }
 
     @Override

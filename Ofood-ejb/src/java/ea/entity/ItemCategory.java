@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -30,15 +29,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author UNI
  */
 @Entity
-@Table(name = "item")
+@Table(name = "item_category")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
-    @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id"),
-    @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name"),
-    @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price"),
-    @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description")})
-public class Item implements Serializable {
+    @NamedQuery(name = "ItemCategory.findAll", query = "SELECT i FROM ItemCategory i"),
+    @NamedQuery(name = "ItemCategory.findById", query = "SELECT i FROM ItemCategory i WHERE i.id = :id"),
+    @NamedQuery(name = "ItemCategory.findByName", query = "SELECT i FROM ItemCategory i WHERE i.name = :name"),
+    @NamedQuery(name = "ItemCategory.findByDescription", query = "SELECT i FROM ItemCategory i WHERE i.description = :description")})
+public class ItemCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,41 +45,28 @@ public class Item implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "price")
-    private float price;
-    @Size(max = 256)
+    @Size(max = 64)
     @Column(name = "description")
     private String description;
-    @JoinTable(name = "container_io", joinColumns = {
-        @JoinColumn(name = "item_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "purchase_order_id", referencedColumnName = "id")})
-    @ManyToMany
-    private Collection<PurchaseOrder> purchaseOrderCollection;
-    @JoinTable(name = "container_ic", joinColumns = {
-        @JoinColumn(name = "item_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "item_category_id", referencedColumnName = "id")})
-    @ManyToMany
-    private Collection<ItemCategory> itemCategoryCollection;
+    @ManyToMany(mappedBy = "itemCategoryCollection")
+    private Collection<Item> itemCollection;
     @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Restaurant restaurantId;
 
-    public Item() {
+    public ItemCategory() {
     }
 
-    public Item(Integer id) {
+    public ItemCategory(Integer id) {
         this.id = id;
     }
 
-    public Item(Integer id, String name, float price) {
+    public ItemCategory(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.price = price;
     }
 
     public Integer getId() {
@@ -100,14 +85,6 @@ public class Item implements Serializable {
         this.name = name;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -117,21 +94,12 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public Collection<PurchaseOrder> getPurchaseOrderCollection() {
-        return purchaseOrderCollection;
+    public Collection<Item> getItemCollection() {
+        return itemCollection;
     }
 
-    public void setPurchaseOrderCollection(Collection<PurchaseOrder> purchaseOrderCollection) {
-        this.purchaseOrderCollection = purchaseOrderCollection;
-    }
-
-    @XmlTransient
-    public Collection<ItemCategory> getItemCategoryCollection() {
-        return itemCategoryCollection;
-    }
-
-    public void setItemCategoryCollection(Collection<ItemCategory> itemCategoryCollection) {
-        this.itemCategoryCollection = itemCategoryCollection;
+    public void setItemCollection(Collection<Item> itemCollection) {
+        this.itemCollection = itemCollection;
     }
 
     public Restaurant getRestaurantId() {
@@ -152,10 +120,10 @@ public class Item implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Item)) {
+        if (!(object instanceof ItemCategory)) {
             return false;
         }
-        Item other = (Item) object;
+        ItemCategory other = (ItemCategory) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -164,7 +132,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "ea.entity.Item[ id=" + id + " ]";
+        return "ea.entity.ItemCategory[ id=" + id + " ]";
     }
     
 }
