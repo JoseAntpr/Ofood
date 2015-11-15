@@ -5,17 +5,17 @@
  */
 package ea.ejb;
 
-import ea.entity.Order;
+import ea.entity.PurchaseOrder;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Jesus
+ * @author UNI
  */
 @Stateless
-public class OrderFacade extends AbstractFacade<Order> {
+public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
     @PersistenceContext(unitName = "Ofood-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class OrderFacade extends AbstractFacade<Order> {
         return em;
     }
 
-    public OrderFacade() {
-        super(Order.class);
+    public PurchaseOrderFacade() {
+        super(PurchaseOrder.class);
     }
     
 }

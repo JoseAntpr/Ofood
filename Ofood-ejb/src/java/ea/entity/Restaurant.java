@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jesus
+ * @author UNI
  */
 @Entity
 @Table(name = "restaurant")
@@ -40,8 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Restaurant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -74,9 +76,9 @@ public class Restaurant implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
     private Collection<Item> itemCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
-    private Collection<Review> reviewCollection;
+    private Collection<PurchaseOrder> purchaseOrderCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
-    private Collection<Order> order1Collection;
+    private Collection<Review> reviewCollection;
 
     public Restaurant() {
     }
@@ -159,21 +161,21 @@ public class Restaurant implements Serializable {
     }
 
     @XmlTransient
+    public Collection<PurchaseOrder> getPurchaseOrderCollection() {
+        return purchaseOrderCollection;
+    }
+
+    public void setPurchaseOrderCollection(Collection<PurchaseOrder> purchaseOrderCollection) {
+        this.purchaseOrderCollection = purchaseOrderCollection;
+    }
+
+    @XmlTransient
     public Collection<Review> getReviewCollection() {
         return reviewCollection;
     }
 
     public void setReviewCollection(Collection<Review> reviewCollection) {
         this.reviewCollection = reviewCollection;
-    }
-
-    @XmlTransient
-    public Collection<Order> getOrder1Collection() {
-        return order1Collection;
-    }
-
-    public void setOrder1Collection(Collection<Order> order1Collection) {
-        this.order1Collection = order1Collection;
     }
 
     @Override

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jesus
+ * @author UNI
  */
 @Entity
 @Table(name = "user")
@@ -78,9 +78,9 @@ public class User implements Serializable {
     @Column(name = "address")
     private String address;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Review> reviewCollection;
+    private Collection<PurchaseOrder> purchaseOrderCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Order> order1Collection;
+    private Collection<Review> reviewCollection;
 
     public User() {
     }
@@ -156,21 +156,21 @@ public class User implements Serializable {
     }
 
     @XmlTransient
+    public Collection<PurchaseOrder> getPurchaseOrderCollection() {
+        return purchaseOrderCollection;
+    }
+
+    public void setPurchaseOrderCollection(Collection<PurchaseOrder> purchaseOrderCollection) {
+        this.purchaseOrderCollection = purchaseOrderCollection;
+    }
+
+    @XmlTransient
     public Collection<Review> getReviewCollection() {
         return reviewCollection;
     }
 
     public void setReviewCollection(Collection<Review> reviewCollection) {
         this.reviewCollection = reviewCollection;
-    }
-
-    @XmlTransient
-    public Collection<Order> getOrder1Collection() {
-        return order1Collection;
-    }
-
-    public void setOrder1Collection(Collection<Order> order1Collection) {
-        this.order1Collection = order1Collection;
     }
 
     @Override

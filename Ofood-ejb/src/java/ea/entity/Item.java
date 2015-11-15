@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jesus
+ * @author UNI
  */
 @Entity
 @Table(name = "item")
@@ -31,13 +33,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id"),
     @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name"),
     @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price"),
-    @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description"),
-    @NamedQuery(name = "Item.findByItemCategoryId", query = "SELECT i FROM Item i WHERE i.itemCategoryId = :itemCategoryId")})
+    @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description")})
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -53,13 +54,9 @@ public class Item implements Serializable {
     @Size(max = 45)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "item_category_id")
-    private int itemCategoryId;
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @JoinColumn(name = "purchase_order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Order orderId;
+    private PurchaseOrder purchaseOrderId;
     @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Restaurant restaurantId;
@@ -71,11 +68,10 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, String price, int itemCategoryId) {
+    public Item(Integer id, String name, String price) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.itemCategoryId = itemCategoryId;
     }
 
     public Integer getId() {
@@ -110,20 +106,12 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public int getItemCategoryId() {
-        return itemCategoryId;
+    public PurchaseOrder getPurchaseOrderId() {
+        return purchaseOrderId;
     }
 
-    public void setItemCategoryId(int itemCategoryId) {
-        this.itemCategoryId = itemCategoryId;
-    }
-
-    public Order getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Order orderId) {
-        this.orderId = orderId;
+    public void setPurchaseOrderId(PurchaseOrder purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
     }
 
     public Restaurant getRestaurantId() {

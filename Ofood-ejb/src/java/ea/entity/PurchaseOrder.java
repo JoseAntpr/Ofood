@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,23 +30,23 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jesus
+ * @author UNI
  */
 @Entity
-@Table(name = "order")
+@Table(name = "purchase_order")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order.findAll", query = "SELECT o FROM Order o"),
-    @NamedQuery(name = "Order.findById", query = "SELECT o FROM Order o WHERE o.id = :id"),
-    @NamedQuery(name = "Order.findByDate", query = "SELECT o FROM Order o WHERE o.date = :date"),
-    @NamedQuery(name = "Order.findByState", query = "SELECT o FROM Order o WHERE o.state = :state"),
-    @NamedQuery(name = "Order.findByBill", query = "SELECT o FROM Order o WHERE o.bill = :bill"),
-    @NamedQuery(name = "Order.findByAddress", query = "SELECT o FROM Order o WHERE o.address = :address")})
-public class Order implements Serializable {
+    @NamedQuery(name = "PurchaseOrder.findAll", query = "SELECT p FROM PurchaseOrder p"),
+    @NamedQuery(name = "PurchaseOrder.findById", query = "SELECT p FROM PurchaseOrder p WHERE p.id = :id"),
+    @NamedQuery(name = "PurchaseOrder.findByDate", query = "SELECT p FROM PurchaseOrder p WHERE p.date = :date"),
+    @NamedQuery(name = "PurchaseOrder.findByState", query = "SELECT p FROM PurchaseOrder p WHERE p.state = :state"),
+    @NamedQuery(name = "PurchaseOrder.findByBill", query = "SELECT p FROM PurchaseOrder p WHERE p.bill = :bill"),
+    @NamedQuery(name = "PurchaseOrder.findByAddress", query = "SELECT p FROM PurchaseOrder p WHERE p.address = :address")})
+public class PurchaseOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -66,7 +68,7 @@ public class Order implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "address")
     private String address;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrderId")
     private Collection<Item> itemCollection;
     @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -75,14 +77,14 @@ public class Order implements Serializable {
     @ManyToOne(optional = false)
     private User userId;
 
-    public Order() {
+    public PurchaseOrder() {
     }
 
-    public Order(Integer id) {
+    public PurchaseOrder(Integer id) {
         this.id = id;
     }
 
-    public Order(Integer id, Date date, String state, double bill, String address) {
+    public PurchaseOrder(Integer id, Date date, String state, double bill, String address) {
         this.id = id;
         this.date = date;
         this.state = state;
@@ -165,10 +167,10 @@ public class Order implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof PurchaseOrder)) {
             return false;
         }
-        Order other = (Order) object;
+        PurchaseOrder other = (PurchaseOrder) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -177,7 +179,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "ea.entity.Order[ id=" + id + " ]";
+        return "ea.entity.PurchaseOrder[ id=" + id + " ]";
     }
     
 }
