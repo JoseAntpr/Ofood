@@ -55,16 +55,16 @@ public class PurchaseOrder implements Serializable {
     private Date date;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 32)
     @Column(name = "state")
     private String state;
     @Basic(optional = false)
     @NotNull
     @Column(name = "bill")
-    private double bill;
+    private float bill;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 64)
     @Column(name = "address")
     private String address;
     @ManyToMany(mappedBy = "purchaseOrderCollection")
@@ -83,7 +83,7 @@ public class PurchaseOrder implements Serializable {
         this.id = id;
     }
 
-    public PurchaseOrder(Integer id, Date date, String state, double bill, String address) {
+    public PurchaseOrder(Integer id, Date date, String state, float bill, String address) {
         this.id = id;
         this.date = date;
         this.state = state;
@@ -115,11 +115,11 @@ public class PurchaseOrder implements Serializable {
         this.state = state;
     }
 
-    public double getBill() {
+    public float getBill() {
         return bill;
     }
 
-    public void setBill(double bill) {
+    public void setBill(float bill) {
         this.bill = bill;
     }
 

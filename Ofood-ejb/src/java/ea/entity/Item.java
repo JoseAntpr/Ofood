@@ -47,15 +47,14 @@ public class Item implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 64)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "price")
-    private String price;
-    @Size(max = 45)
+    private float price;
+    @Size(max = 256)
     @Column(name = "description")
     private String description;
     @JoinTable(name = "container", joinColumns = {
@@ -74,7 +73,7 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, String price) {
+    public Item(Integer id, String name, float price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -96,11 +95,11 @@ public class Item implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

@@ -48,12 +48,12 @@ public class Restaurant implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 64)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 75)
+    @Size(min = 1, max = 96)
     @Column(name = "address")
     private String address;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
@@ -65,12 +65,12 @@ public class Restaurant implements Serializable {
     @Size(min = 1, max = 16)
     @Column(name = "zipcode")
     private String zipcode;
-    @Size(max = 45)
+    @Size(max = 48)
     @Column(name = "city")
     private String city;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 64)
     @Column(name = "category")
     private String category;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurantId")
