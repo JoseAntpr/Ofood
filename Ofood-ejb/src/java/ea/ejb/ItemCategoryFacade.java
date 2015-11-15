@@ -6,9 +6,11 @@
 package ea.ejb;
 
 import ea.entity.ItemCategory;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,12 @@ public class ItemCategoryFacade extends AbstractFacade<ItemCategory> {
 
     public ItemCategoryFacade() {
         super(ItemCategory.class);
+    }
+    
+    public Collection<ItemCategory> findItemCategoryFromRestaurant(Integer id){
+        Query q = em.createQuery("SELECT i FROM ItemCategory i WHERE i.restaurantId.id = :ID ORDER BY i.id");
+        q.setParameter("ID", id);
+        return q.getResultList();
     }
     
 }

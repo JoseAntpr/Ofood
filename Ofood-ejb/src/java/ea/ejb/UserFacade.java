@@ -28,4 +28,8 @@ public class UserFacade extends AbstractFacade<User> {
         super(User.class);
     }
     
+    public User login(String email, String password){
+        return (User)em.createQuery("SELECT u FROM User u WHERE u.email = :EMAIL AND u.password = :PASS")
+                .setParameter("EMAIL", email).setParameter("PASS", password).getSingleResult();
+    }
 }

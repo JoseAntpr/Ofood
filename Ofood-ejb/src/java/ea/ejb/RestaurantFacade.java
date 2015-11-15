@@ -6,6 +6,8 @@
 package ea.ejb;
 
 import ea.entity.Restaurant;
+import ea.entity.Review;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,4 +30,12 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
         super(Restaurant.class);
     }
     
+    public float getRestaurantMark(Restaurant r){
+        float mark = (float) 0.0;
+        Collection<Review> l = r.getReviewCollection();
+        for(Review re : l){
+            mark += re.getMark();
+        }
+        return mark / l.size();
+    }
 }

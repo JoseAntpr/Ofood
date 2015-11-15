@@ -83,8 +83,8 @@ public class PurchaseOrder implements Serializable {
         this.id = id;
     }
 
-    public PurchaseOrder(Integer id, Date date, String state, float bill, String address) {
-        this.id = id;
+    public PurchaseOrder(Date date, String state, float bill, String address) {
+        //this.id = id;
         this.date = date;
         this.state = state;
         this.bill = bill;

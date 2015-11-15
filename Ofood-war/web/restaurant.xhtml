@@ -48,12 +48,12 @@
                 <!-- Info Restaurante --> 
                 <div class="row separador-h">
                     <div class="col-md-6 col-sm-6">
-                        <h2 class="section-title text-left">Nombre del Restaurante</h2>
-                        <p class="lead_2 text-left">Reviews "Estrellas" y (nº de reviews)</p>
-                        <p class="lead_2 text-left">TIPO DE RESTAURANTE</p>
+                        <h2 class="section-title text-left">#{restaurantBean.restaurant.name}</h2>
+                        <p class="lead_2 text-left">Puntuación: #{restaurantBean.mark} de #{restaurantBean.restaurant.reviewCollection.size()} reviews</p>
+                        <p class="lead_2 text-left">#{restaurantBean.restaurant.category}</p>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <p class="lead_2 text-left pull-right h1">Dirección</p>
+                        <p class="lead_2 text-left pull-right h1">#{restaurantBean.restaurant.address}</p>
                     </div>
                 </div> <!-- /Info Restaurante -->
                 
@@ -62,19 +62,33 @@
                     <div id="categories" class="col-md-3 col-sm-3">
                         <h3>Categorías</h3>
                         <div class="col-md-12 col-sm-12" >
-                            <p>Categoría 1</p>
-                            <p>Categoría 2</p>
+                            <c:forEach items="#{restaurantBean.itemCategoryList}" var="i">
+                                <p>#{i.name}</p>
+                            </c:forEach>
                         </div>
                     </div><!-- /Item Categories List -->
                     
                     <!-- Item List -->
                     <div id="items" class="col-md-6 col-sm-6">
-                        <div class="col-wrapper item-restaurant separador-h-sup">
-                            <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
-                            <h3>ITEM_NAME</h3>
-                            <p>ITEM_DESCRIPTION</p>
-                        </div>
-                        <div class="clearfix"></div>
+                        <c:forEach items="#{restaurantBean.itemCategoryList}" var="ic">
+                            <h2>#{ic.name}</h2>
+                            <c:forEach items="#{ic.itemCollection}" var="item">
+                                <div class="col-wrapper item-restaurant separador-h-sup">
+                                    <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
+                                    <div class="pull-right">
+                                        <h:form>
+                                            <h:commandButton action="#{restaurantBean.addItem(item.id)}" class="fa fa-plus-circle" >
+                                                
+                                            </h:commandButton> 
+                                        </h:form>
+                                    </div>
+                                    <h3>#{item.name}</h3>
+                                    <p>#{item.description}</p>
+                                    
+                                </div>
+                                <div class="clearfix"></div>
+                            </c:forEach>
+                        </c:forEach>
                     </div> <!-- /Item List -->
                     
                     <!-- Order -->
@@ -82,27 +96,22 @@
                         <h3>Tu pedido</h3>
                         <h:form>
                             <div class="col-md-12 col-sm-12">
-                                <div class="order-item box">
-                                    <div class="fa fa-minus-circle drop-item "></div>
-                                    <div class="oi-data">
-                                        <div class="oi-name pull-left">
-                                            <span class="oi-quantity">2 x</span>
-                                            <span>Order Item 1</span>
+                                
+                                <c:forEach items="#{restaurantBean.purchaseOrder.itemCollection}" var="io">
+                                    <div class="order-item box">
+                                        <div class="fa fa-minus-circle drop-item "></div>
+                                        <div class="oi-data">
+                                            <div class="oi-name pull-left">
+                                                <span class="oi-quantity">2 x</span>
+                                                <span>#{io.name}</span>
+                                            </div>
+                                            <div class="oi-price pull-right">#{io.price}€</div>
                                         </div>
-                                        <div class="oi-price pull-right">5.60€</div>
                                     </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="order-item">
-                                    <div class="fa fa-minus-circle drop-item"></div>
-                                    <div class="oi-data">
-                                        <div class="oi-name pull-left">
-                                            <span class="oi-quantity">2 x</span>
-                                            <span>Order Item 2</span>
-                                        </div>
-                                        <div class="oi-price pull-right">2.30€</div>
-                                    </div>
-                                </div>
+                                    <div class="clearfix"></div>
+                                </c:forEach>
+                                
+                                
                                 <div class="separador-h-inf"></div>
                                 <!-- Precio -->
                                 <div class="summary">
