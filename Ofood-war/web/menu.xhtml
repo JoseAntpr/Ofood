@@ -35,25 +35,37 @@
 
                         <li class="dropdown" id="fat-menu"><a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">#{loginBean.infoSession}<b class="caret"></b></a>
                             <ul class="dropdown-menu" id="dropdown-menu" aria-labelledby="drop3" role="menu" style="padding-top: 20px; padding-bottom: 20px;">                    
+                                <c:if test="#{loginBean.user!=null}">
                                 <h:form >                                 
+                                    <li class="menu-boton" role="presentation">
+                                        <h:commandButton class="boton-salir" value="SALIR" action="#{loginBean.salir()}"></h:commandButton>
+                                    </li>
+                                </h:form>
+                                </c:if>
+                                
+                                <c:if test="#{loginBean.user==null}">
+                                    
+                                    <h:form >                                 
                                     <li class="menu-boton" role="presentation">
                                         <h:commandButton class="boton-registro" value="CREAR UNA CUENTA" action="#{loginBean.registro()}"></h:commandButton>
                                     </li>
-                                </h:form>
-                                <h6 class="account-drop-heading account-drop-log-in-heading">
-                                    <span class="text">¿Tienes una cuenta? Logeate</span>
-                                </h6>
-                                <h:form >
-                                    <li class="menu-usuario" role="presentation"><h:inputText id="email" value="#{loginBean.email}" class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Email" ></h:inputText></li>
-                                    <li class="menu-usuario" role="presentation"><h:inputSecret id="password" value="#{loginBean.password}" class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Contraseña" ></h:inputSecret></li>
-                                    <li class="menu-boton" role="presentation">
-                                        <!--<button class="boton-usuario" value="INICIAR SESIÓN"></:button>-->
-                                        <h:commandButton class="boton-usuario" value="INICIAR SESIÓN" action="#{loginBean.checkUser()}">
-                                        <!--    <f:ajax execute="email" render="noRegistrado" /> -->                                                                                      
-                                        </h:commandButton>
-                                    </li>
+                                    </h:form>
                                     
-                                </h:form>
+                                    <h6 class="account-drop-heading account-drop-log-in-heading">
+                                        <span class="text">¿Tienes una cuenta? Logeate</span>
+                                    </h6>
+                                    <h:form >
+                                        <li class="menu-usuario" role="presentation"><h:inputText id="email" value="#{loginBean.email}" class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Email" ></h:inputText></li>
+                                        <li class="menu-usuario" role="presentation"><h:inputSecret id="password" value="#{loginBean.password}" class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Contraseña" ></h:inputSecret></li>
+                                        <li class="menu-boton" role="presentation">
+                                            <!--<button class="boton-usuario" value="INICIAR SESIÓN"></:button>-->
+                                            <h:commandButton class="boton-usuario" value="INICIAR SESIÓN" action="#{loginBean.checkUser()}">
+                                            <!--    <f:ajax execute="email" render="noRegistrado" /> -->                                                                                      
+                                            </h:commandButton>
+                                        </li>
+
+                                    </h:form>
+                                </c:if>
                             </ul>
                         </li>
                         

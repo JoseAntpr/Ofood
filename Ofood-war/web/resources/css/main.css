@@ -169,6 +169,16 @@ section::before,section::after {
     color: white;
     padding: .5em 1em;
 }
+
+.boton-salir{
+    margin-left: 31px;
+    background-color: #ED0121;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 4.25em;
+}
+
 .boton-pagina-registro{
     display:block;
     background-color: #94D500;

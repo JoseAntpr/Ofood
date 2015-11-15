@@ -2716,7 +2716,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
     z-index:1000;
     float:left;
     min-width:220px;
-    min-height: 246px;
+    min-height: 78px;
     padding:5px 0;
     margin:2px 0 0;
     font-size:14px;

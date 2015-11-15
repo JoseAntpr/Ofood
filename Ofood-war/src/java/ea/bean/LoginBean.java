@@ -33,7 +33,7 @@ public class LoginBean {
     private String phone;
     private String password;
     private String passwordRepeat;
-    private User user;
+    private User user=null;
     String error;
     
     private PurchaseOrder purchaseOrder;
@@ -53,7 +53,6 @@ public class LoginBean {
         // Temporalmente forzamos el user 1
         //user = userFacade.find(1);
         infoSession = "Iniciar sesión...";
-        
     }
 
     public User getUser() {
@@ -171,8 +170,6 @@ public class LoginBean {
             error = "El usuario o contraseña son erroneos";
         }else{
             infoSession = "Hola " + user.getName();
-            //pruebas
-//            ruta = "restaurant";
         }
         return ruta;
     }
@@ -202,6 +199,25 @@ public class LoginBean {
 
         return ruta;
 
+    }
+    
+    public String salir(){
+        setInfoSession("Iniciar sesión...");
+        setName("");
+        setEmail("");
+        setAddress("");
+        setPhone("");
+        setPassword("");
+        setPasswordRepeat("");
+        setUser(null);
+        setError("");
+    
+        setPurchaseOrder(null);
+        setRestaurant(null);
+        setItem(null);
+
+        return "index";
+        
     }
     
     @PreDestroy

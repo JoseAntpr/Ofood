@@ -29,9 +29,20 @@ public class UserFacade extends AbstractFacade<User> {
         super(User.class);
     }
     
-    public User login(String email, String password){
-        return (User)em.createQuery("SELECT u FROM User u WHERE u.email = :EMAIL AND u.password = :PASS")
-                .setParameter("EMAIL", email).setParameter("PASS", password).getSingleResult();
+    public User login(String email, String password){        
+        User user = null;
+
+        //Creamos una consulta que busque usuarios por email y contraseña.
+        Query query = em.createQuery("SELECT u FROM User u WHERE u.email=:email AND u.password=:password");
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+
+        try {
+            user = (User) query.getSingleResult();
+        } catch (Exception ex) {
+        }
+
+        return user;
     }
     
     public User nuevoUser(String name, String address, String phone, String email, String password) {
