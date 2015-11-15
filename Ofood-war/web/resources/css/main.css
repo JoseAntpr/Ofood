@@ -87,6 +87,38 @@ section::before,section::after {
     position:relative;
 }
 
+#registro{
+    background-image:url(../img/nightOpacity.jpg);
+    /*-webkit-background-size:@@prefixmycss->No equivalent;*/
+    -moz-background-size:cover;
+    /*-o-background-size:@@prefixmycss->No equivalent;*/
+    background-size:cover;
+    background-position:center center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    position:relative;
+    height: 599px;
+    
+}
+
+#camposRegistro{
+    top: 135px;
+    left: 50px;
+    background-color: #443E47;
+    padding-bottom: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
+}
+
+#textoRegistro{
+    text-align: left;
+    margin-left: 15px;
+    font-weight: bold;
+    color:white;
+}
+
+
 .buscador{
   border: 1px solid #DBE1EB;
   text-align: center;
@@ -136,6 +168,15 @@ section::before,section::after {
     border-radius: 3px;
     color: white;
     padding: .5em 1em;
+}
+.boton-pagina-registro{
+    display:block;
+    background-color: #94D500;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 1em;
+    font-size: 18px;
 }
 
 .account-drop-heading {
@@ -465,10 +506,10 @@ section::before,section::after {
     background-color: transparent;
 }
 .form-control {
-    height:38px;
-    font-size:14px;
+    height:44px;
+    font-size:18px;
     vertical-align:middle;
-    background-color:transparent;
+    
     -webkit-border-radius:2px;
     -webkit-border-radius:2px;
     -moz-border-radius:2px;

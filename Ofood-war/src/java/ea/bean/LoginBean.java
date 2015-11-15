@@ -27,8 +27,12 @@ public class LoginBean {
     private UserFacade userFacade;
 
     private String infoSession;
+    private String name;
     private String email;
+    private String address;
+    private String phone;
     private String password;
+    private String passwordRepeat;
     private User user;
     String error;
     
@@ -68,6 +72,16 @@ public class LoginBean {
         this.purchaseOrder = purchaseOrder;
     }
 
+    public String getPasswordRepeat() {
+        return passwordRepeat;
+    }
+
+    public void setPasswordRepeat(String passwordRepeat) {
+        this.passwordRepeat = passwordRepeat;
+    }
+    
+    
+
     public Restaurant getRestaurant() {
         return restaurant;
     }
@@ -99,6 +113,38 @@ public class LoginBean {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+     public UserFacade getUserFacade() {
+        return userFacade;
+    }
+
+    public void setUserFacade(UserFacade userFacade) {
+        this.userFacade = userFacade;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getInfoSession() {
         return infoSession;
@@ -129,6 +175,33 @@ public class LoginBean {
 //            ruta = "restaurant";
         }
         return ruta;
+    }
+    
+    public String registro(){
+        return "registro";
+    }
+    
+    public String registrarUsuario() {
+        String ruta;
+        User usr = userFacade.buscarEmail(email);
+
+        if (usr == null) {
+            if(password.equals(passwordRepeat)){
+                error="";
+                usr = userFacade.nuevoUser(this.name, this.address, this.phone, this.email, this.password);
+                this.user = usr;
+                ruta = "index";
+            }else{
+                error = "Las contraseñas no coinciden";
+                ruta = "registro";
+            }
+        } else {
+            error = "El email ya esta registrado en nuestra red social.";
+            ruta = "registro";
+        }
+
+        return ruta;
+
     }
     
     @PreDestroy

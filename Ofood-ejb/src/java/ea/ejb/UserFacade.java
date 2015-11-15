@@ -9,6 +9,7 @@ import ea.entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,5 +32,34 @@ public class UserFacade extends AbstractFacade<User> {
     public User login(String email, String password){
         return (User)em.createQuery("SELECT u FROM User u WHERE u.email = :EMAIL AND u.password = :PASS")
                 .setParameter("EMAIL", email).setParameter("PASS", password).getSingleResult();
+    }
+    
+    public User nuevoUser(String name, String address, String phone, String email, String password) {
+
+        User user = new User();
+        user.setName(name);
+        user.setAddress(address);
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setAdmin(false);
+        
+        create(user);
+        return user;
+
+    }
+    
+    public User buscarEmail(String email) {
+
+        Query query = em.createNamedQuery("User.findByEmail");
+        query.setParameter("email", email);
+        User user = null;
+
+        try {
+            user = (User) query.getSingleResult();
+        } catch (Exception ex) {
+        }
+
+        return user;
     }
 }
