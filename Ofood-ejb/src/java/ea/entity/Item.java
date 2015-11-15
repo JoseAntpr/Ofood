@@ -6,6 +6,7 @@
 package ea.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,6 +23,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -54,9 +58,11 @@ public class Item implements Serializable {
     @Size(max = 45)
     @Column(name = "description")
     private String description;
-    @JoinColumn(name = "purchase_order_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private PurchaseOrder purchaseOrderId;
+    @JoinTable(name = "container", joinColumns = {
+        @JoinColumn(name = "item_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "purchase_order_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<PurchaseOrder> purchaseOrderCollection;
     @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Restaurant restaurantId;
@@ -106,12 +112,13 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public PurchaseOrder getPurchaseOrderId() {
-        return purchaseOrderId;
+    @XmlTransient
+    public Collection<PurchaseOrder> getPurchaseOrderCollection() {
+        return purchaseOrderCollection;
     }
 
-    public void setPurchaseOrderId(PurchaseOrder purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
+    public void setPurchaseOrderCollection(Collection<PurchaseOrder> purchaseOrderCollection) {
+        this.purchaseOrderCollection = purchaseOrderCollection;
     }
 
     public Restaurant getRestaurantId() {
