@@ -5,27 +5,16 @@
  */
 package ea.bean;
 
-import ea.ejb.ItemCategoryFacade;
-import ea.ejb.ItemFacade;
-import ea.ejb.PurchaseOrderFacade;
 import ea.ejb.RestaurantFacade;
-import ea.ejb.UserFacade;
 import ea.entity.Item;
-import ea.entity.ItemCategory;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
-import ea.entity.Review;
-import ea.entity.User;
-import java.util.Collection;
-import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -40,7 +29,7 @@ public class RestaurantBean {
     
     @EJB
     private RestaurantFacade restaurantFacade;
-    @EJB
+   
 
     private float mark;
 
@@ -66,10 +55,7 @@ public class RestaurantBean {
         this.mark = mark;
     }
     
-    @PostConstruct
-    public void init(){
-        mark = restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
-    }
+  
     
     public String cargarRestaurante(Restaurant r){
         loginBean.setRestaurant(r);
@@ -79,8 +65,8 @@ public class RestaurantBean {
         return "restaurant";
     }
     @PreDestroy
-    public String addItem(Integer itemId){
-        if(itemId != null){
+    public void addItem(Item item){
+        if(item != null){
             PurchaseOrder po = loginBean.getPurchaseOrder();
             po.getItemCollection().add(item);
             po.setBill(po.getBill()+item.getPrice());

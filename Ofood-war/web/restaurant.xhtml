@@ -50,10 +50,10 @@
                     <div class="col-md-6 col-sm-6">
                         <h2 class="section-title text-left">#{loginBean.restaurant.name}</h2>
                         <p class="lead_2 text-left">Puntuación: #{restaurantBean.mark} de #{loginBean.restaurant.reviewCollection.size()} reviews</p>
-                        <p class="lead_2 text-left">#{restaurantBean.restaurant.category}</p>
+                        <p class="lead_2 text-left">#{loginBean.restaurant.category}</p>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <p class="lead_2 text-left pull-right h1">#{restaurantBean.restaurant.address}</p>
+                        <p class="lead_2 text-left pull-right h1">#{loginBean.restaurant.address}</p>
                     </div>
                 </div> <!-- /Info Restaurante -->
                 
@@ -62,7 +62,7 @@
                     <div id="categories" class="col-md-3 col-sm-3">
                         <h3>Categorías</h3>
                         <div class="col-md-12 col-sm-12" >
-                            <c:forEach items="#{restaurantBean.restaurant.itemCategoryCollection}" var="i">
+                            <c:forEach items="#{loginBean.restaurant.itemCategoryCollection}" var="i">
                                 <p>#{i.name}</p>
                             </c:forEach>
                         </div>
@@ -70,7 +70,7 @@
                     
                     <!-- Item List -->
                     <div id="items" class="col-md-6 col-sm-6">
-                        <c:forEach items="#{restaurantBean.restaurant.itemCategoryCollection}" var="ic">
+                        <c:forEach items="#{loginBean.restaurant.itemCategoryCollection}" var="ic">
                             <h2>#{ic.name}</h2>
                             <c:forEach items="#{ic.itemCollection}" var="item">
                                 <div class="col-wrapper item-restaurant separador-h-sup">
@@ -78,7 +78,7 @@
                                     <div class="pull-right">
                                         <h:form>
                                             <h:commandButton class="fa fa-plus-circle" >
-                                                <f:ajax render="order" listener="#{restaurantBean.addItem(item)}"/>
+                                                <!--<f:ajax render="order" listener=""/>-->
                                             </h:commandButton> 
                                         </h:form>
                                     </div>
@@ -98,11 +98,11 @@
                         <h:form>
                             <div class="col-md-12 col-sm-12">
                                 
-                                <c:forEach items="#{restaurantBean.purchaseOrder.itemCollection}" var="io">
+                                <c:forEach items="#{loginBean.purchaseOrder.itemCollection}" var="io">
                                     <div class="order-item box">
                                         <div>
                                             <h:commandButton class="fa fa-minus-circle drop-item">
-                                                <f:ajax render="order" listener="#{restaurantBean.deleteItem(item)}"/>
+                                                <!--<f:ajax render="order" listener=""/>-->
                                             </h:commandButton>
                                         </div>
                                         <div class="oi-data">
@@ -122,7 +122,7 @@
                                 <div class="summary">
                                     <div class="box">
                                         <div class="box-grow-1">Subtotal</div>
-                                        <div>#{restaurantBean.purchaseOrder.bill}€</div>
+                                        <div>#{loginBean.purchaseOrder.bill}€</div>
                                     </div>
                                     <div class="box">
                                         <div class="box-grow-1">Gastos de envío</div>
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="box">
                                         <div class="box-grow-1 h4">Total</div>
-                                        <div class="h4">#{restaurantBean.purchaseOrder.bill+1}€</div>
+                                        <div class="h4">#{loginBean.purchaseOrder.bill+1}€</div>
                                     </div>
                                 </div> <!-- /Precio -->
                                 <div class="separador-h-inf"></div>

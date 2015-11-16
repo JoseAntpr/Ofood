@@ -12,6 +12,7 @@ import ea.entity.Restaurant;
 import ea.entity.User;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
