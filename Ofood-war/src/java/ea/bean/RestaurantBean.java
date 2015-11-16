@@ -27,6 +27,10 @@ public class RestaurantBean {
     
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
+    
+    @EJB
+    private RestaurantFacade restaurantFacade;
+   
 
     private float mark;
 
@@ -51,10 +55,8 @@ public class RestaurantBean {
     public void setMark(float mark) {
         this.mark = mark;
     }
-//    @PostConstruct
-//    public void init(){
-//        mark = restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
-//    }
+    
+  
     
     public String cargarRestaurante(Restaurant r){
         loginBean.setRestaurant(r);
