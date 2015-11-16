@@ -5,27 +5,15 @@
  */
 package ea.bean;
 
-import ea.ejb.ItemCategoryFacade;
-import ea.ejb.ItemFacade;
-import ea.ejb.PurchaseOrderFacade;
 import ea.ejb.RestaurantFacade;
-import ea.ejb.UserFacade;
 import ea.entity.Item;
-import ea.entity.ItemCategory;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
-import ea.entity.Review;
-import ea.entity.User;
-import java.util.Collection;
-import java.util.Date;
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -34,13 +22,11 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean (name = "restaurantBean")
 @RequestScoped
 public class RestaurantBean {
+    @EJB
+    private RestaurantFacade restaurantFacade;
     
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
-    
-    @EJB
-    private RestaurantFacade restaurantFacade;
-    @EJB
 
     private float mark;
 
@@ -65,22 +51,20 @@ public class RestaurantBean {
     public void setMark(float mark) {
         this.mark = mark;
     }
-    
-    @PostConstruct
-    public void init(){
-        mark = restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
-    }
+//    @PostConstruct
+//    public void init(){
+//        mark = restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
+//    }
     
     public String cargarRestaurante(Restaurant r){
         loginBean.setRestaurant(r);
-        
         mark = restaurantFacade.getRestaurantMark(r);
-        purchaseOrder = loginBean.getPurchaseOrder();
         return "restaurant";
     }
-    @PreDestroy
-    public String addItem(Integer itemId){
-        if(itemId != null){
+   
+    
+    public void addItem(Item item){
+        if(item != null){
             PurchaseOrder po = loginBean.getPurchaseOrder();
             po.getItemCollection().add(item);
             po.setBill(po.getBill()+item.getPrice());
@@ -93,6 +77,10 @@ public class RestaurantBean {
             po.getItemCollection().remove(item);
             po.setBill(po.getBill()-item.getPrice());
         }
+    }
+    
+    public float totalAmount(){
+        return loginBean.getPurchaseOrder().getBill()+1;
     }
     
 }

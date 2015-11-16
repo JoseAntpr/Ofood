@@ -722,6 +722,9 @@ section::before,section::after {
 .oi-quantity{
     padding: 0px 2px 0px 5px;
 }
+.oi-data{
+    width: 100%;
+}
 
 .drop-item{
     margin: 3px 5px 0px 0px;
