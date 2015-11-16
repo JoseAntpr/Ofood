@@ -118,7 +118,7 @@ public class RestaurantBean {
         loginBean.setRestaurant(r);
         
         mark = restaurantFacade.getRestaurantMark(r);
-        purchaseOrder = loginBean.getPurchaseOrder();
+        
         return "restaurant";
     }
     @PreDestroy
