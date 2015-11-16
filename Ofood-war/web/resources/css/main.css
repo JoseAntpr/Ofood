@@ -207,6 +207,28 @@ section::before,section::after {
     padding-bottom: 5px;
 }
 
+#resultadosEntrega{
+    border-bottom: 1px solid #C5BDBD;
+}
+
+#listaRestaurantes{
+    margin-top: 20px;
+}
+
+#textoEntrega{
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.boton-vermenu{
+    background-color: #ED0121;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 1em;
+}
 
 .bg-overlay {
     position:absolute;

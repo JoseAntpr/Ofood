@@ -8,9 +8,11 @@ package ea.ejb;
 import ea.entity.Restaurant;
 import ea.entity.Review;
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -37,5 +39,18 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
             mark += re.getMark();
         }
         return mark / l.size();
+    }
+    
+    public List<Restaurant> getRestaurantList(String zipcode){
+        Query query=em.createNamedQuery("Restaurant.findByZipcode");
+        query.setParameter("zipcode", zipcode);
+        List<Restaurant> list=null;
+        
+        try {
+            list = (List<Restaurant>) query.getResultList();
+        } catch (Exception ex) {
+        }
+        
+        return list;
     }
 }
