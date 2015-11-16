@@ -113,27 +113,28 @@ public class RestaurantBean {
         this.purchaseOrder = purchaseOrder;
     }
     
-    @PostConstruct
-    public void init(){
+    
+    public String cargarRestaurante(){
             // Recuperar el usuario de la sesion
             // Temporalmente
-            user = loginBean.getUser();
+   /*         user = loginBean.getUser();
 //            user = userFacade.find(1);
 
             // Ya tenemos el id del restaurante
-            Integer restaurantId = 2;
-            restaurant = restaurantFacade.find(restaurantId);
+            
+            restaurant =r ;
 
             // Calculamos la media de la puntuación
-            mark = restaurantFacade.getRestaurantMark(restaurant);
+            mark = restaurantFacade.getRestaurantMark(r);
 
             if (restaurant != null){
-                itemCategoryList = itemCategoryFacade.findItemCategoryFromRestaurant(restaurantId);
+                itemCategoryList = itemCategoryFacade.findItemCategoryFromRestaurant(r.getId());
             }else{
                 System.out.println("Restaurante Nulo");
             }
             
-            purchaseOrder = loginBean.getPurchaseOrder();
+            purchaseOrder = loginBean.getPurchaseOrder();*/
+        return "restaurant";
             
         
     }
