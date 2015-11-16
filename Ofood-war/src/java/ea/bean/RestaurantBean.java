@@ -115,9 +115,10 @@ public class RestaurantBean {
     
     
     public String cargarRestaurante(Restaurant r){
-        restaurant =r;
+        loginBean.setRestaurant(r);
         
-        
+        mark = restaurantFacade.getRestaurantMark(r);
+        purchaseOrder = loginBean.getPurchaseOrder();
         return "restaurant";
     }
     @PreDestroy

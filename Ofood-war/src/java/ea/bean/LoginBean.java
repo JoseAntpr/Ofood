@@ -10,6 +10,7 @@ import ea.entity.Item;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -39,6 +40,7 @@ public class LoginBean {
     private PurchaseOrder purchaseOrder;
     private Restaurant restaurant;
     private Item item;
+    private List<Restaurant> listRestaurant;
     
     
     /**
@@ -62,6 +64,15 @@ public class LoginBean {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public List<Restaurant> getListRestaurant() {
+        return listRestaurant;
+    }
+
+    public void setListRestaurant(List<Restaurant> listRestaurant) {
+        this.listRestaurant = listRestaurant;
+    }
+    
 
     public PurchaseOrder getPurchaseOrder() {
         return purchaseOrder;
