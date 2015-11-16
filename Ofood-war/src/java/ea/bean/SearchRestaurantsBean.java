@@ -45,16 +45,16 @@ public class SearchRestaurantsBean {
         if(restaurantList!=null){
             totalRestaurantes=restaurantList.size();
             if(totalRestaurantes==1){
-                entrega=" restaurante que entrega en , "+zipCode;
+                entrega=" restaurante que entrega en "+zipCode+", ";
             }else{
-                entrega=" restaurantes que entregan en , "+zipCode;
+                entrega=" restaurantes que entregan en "+zipCode+", ";
             }
             entrega= entrega + restaurantList.get(0).getCity();
         }else{
             totalRestaurantes=0;
             entrega=" restaurantes que entregan en "+zipCode;
         }
-        return null;
+        return "restaurantList";
     }
 
     public LoginBean getLoginBean() {
