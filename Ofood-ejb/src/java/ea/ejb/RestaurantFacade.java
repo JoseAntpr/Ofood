@@ -50,6 +50,9 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
             list = (List<Restaurant>) query.getResultList();
         } catch (Exception ex) {
         }
+        if(list.size()==0){
+            list=null;
+        }
         
         return list;
     }

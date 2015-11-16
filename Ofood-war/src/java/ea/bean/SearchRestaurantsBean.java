@@ -29,7 +29,7 @@ public class SearchRestaurantsBean {
     @EJB
     private RestaurantFacade restaurantFacade;
     
-    private List<Restaurant> restaurantList;
+
     private String entrega;
     private int totalRestaurantes;
     private String zipCode;
@@ -41,21 +41,22 @@ public class SearchRestaurantsBean {
     
     
     public String buscar(){
-        restaurantList=restaurantFacade.getRestaurantList(zipCode);
-        if(restaurantList!=null){
-            totalRestaurantes=restaurantList.size();
+        loginBean.setListRestaurant(restaurantFacade.getRestaurantList(zipCode));
+        if(loginBean.getListRestaurant()!=null){
+            totalRestaurantes=loginBean.getListRestaurant().size();
             if(totalRestaurantes==1){
-                entrega=" restaurante que entrega en , "+zipCode;
+                entrega=" restaurante que entrega en "+zipCode+", ";
             }else{
-                entrega=" restaurantes que entregan en , "+zipCode;
+                entrega=" restaurantes que entregan en "+zipCode+", ";
             }
-            entrega= entrega + restaurantList.get(0).getCity();
+            entrega= entrega + loginBean.getListRestaurant().get(0).getCity();
         }else{
             totalRestaurantes=0;
             entrega=" restaurantes que entregan en "+zipCode;
         }
-        return null;
+        return "restaurantList";
     }
+    
 
     public LoginBean getLoginBean() {
         return loginBean;
@@ -73,13 +74,7 @@ public class SearchRestaurantsBean {
         this.restaurantFacade = restaurantFacade;
     }
 
-    public List<Restaurant> getRestaurantList() {
-        return restaurantList;
-    }
-
-    public void setRestaurantList(List<Restaurant> restaurantList) {
-        this.restaurantList = restaurantList;
-    }
+    
 
     public String getEntrega() {
         return entrega;

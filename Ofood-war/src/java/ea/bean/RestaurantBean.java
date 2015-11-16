@@ -71,8 +71,16 @@ public class RestaurantBean {
         mark = restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
     }
     
-    public void addItem(Item item){
-        if(item != null){
+    public String cargarRestaurante(Restaurant r){
+        loginBean.setRestaurant(r);
+        
+        mark = restaurantFacade.getRestaurantMark(r);
+        purchaseOrder = loginBean.getPurchaseOrder();
+        return "restaurant";
+    }
+    @PreDestroy
+    public String addItem(Integer itemId){
+        if(itemId != null){
             PurchaseOrder po = loginBean.getPurchaseOrder();
             po.getItemCollection().add(item);
             po.setBill(po.getBill()+item.getPrice());

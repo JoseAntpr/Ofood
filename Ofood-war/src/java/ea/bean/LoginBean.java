@@ -41,6 +41,7 @@ public class LoginBean {
     private PurchaseOrder purchaseOrder;
     private Restaurant restaurant;
     private Item item;
+    private List<Restaurant> listRestaurant;
     
     
     /**
@@ -65,6 +66,15 @@ public class LoginBean {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public List<Restaurant> getListRestaurant() {
+        return listRestaurant;
+    }
+
+    public void setListRestaurant(List<Restaurant> listRestaurant) {
+        this.listRestaurant = listRestaurant;
+    }
+    
 
     public PurchaseOrder getPurchaseOrder() {
         return purchaseOrder;
@@ -203,6 +213,10 @@ public class LoginBean {
 
         return ruta;
 
+    }
+    
+    public String inicio(){
+        return "index";
     }
     
     public String salir(){

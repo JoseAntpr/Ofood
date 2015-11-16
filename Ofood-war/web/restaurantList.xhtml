@@ -49,7 +49,7 @@
                 <!-- Info búsqueda restaurantes --> 
                 <div id="resultadosEntrega" class="row separador-h">
                     <div class="col-md-12 col-sm-12">
-                        <h2 id="textoEntrega" >#{searchRestaurantsBean.restaurantList.size()}#{searchRestaurantsBean.entrega}</h2>
+                        <h2 id="textoEntrega" >#{searchRestaurantsBean.totalRestaurantes}#{searchRestaurantsBean.entrega}</h2>
                     </div>
                 </div> <!-- /Info búsqueda restaurantes --> 
                 
@@ -60,17 +60,21 @@
                     </div><!-- /Columna izquierda -->
                     
                     <!-- Item List -->
+                    
                     <div id="items" class="col-md-6 col-sm-6">
-                        <c:forEach items="#{searchRestaurantsBean.restaurantList}" var="r">
+                        <h:form>
+                            <ui:repeat value="#{loginBean.listRestaurant}" var="r">
                             <h2>#{r.name}</h2>
                             
                             <div class="col-wrapper item-restaurant separador-h-sup">
                                 <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i>&nbsp;&nbsp;</div>
                                 <div class="pull-right">
-                                    <h:form>
-                                        <h:commandButton  class="boton-vermenu" value="VER MENÚ">
-                                        </h:commandButton> 
-                                    </h:form>
+                                    
+                                    <h:commandButton action="#{restaurantBean.cargarRestaurante(r)}" value="VER MENÚ">
+                                   
+                                    </h:commandButton>
+                                   
+                                  
                                 </div>
                                 <h4>#{r.category}</h4>
                                 <h4>#{r.address}</h4>
@@ -78,9 +82,10 @@
                             </div>
                             <div class="clearfix"></div>
                             
-                        </c:forEach>
+                        </ui:repeat>
+                         </h:form>
                     </div> <!-- /Item List -->
-                    
+                   
                     <!-- Columna derecha -->
                     <div id="columnaDerecha" class="col-md-3 col-sm-3">
                         
