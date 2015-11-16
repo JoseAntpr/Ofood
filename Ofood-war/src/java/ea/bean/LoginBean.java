@@ -187,6 +187,7 @@ public class LoginBean {
                 error="";
                 usr = userFacade.nuevoUser(this.name, this.address, this.phone, this.email, this.password);
                 this.user = usr;
+                infoSession = "Hola " + user.getName();
                 ruta = "index";
             }else{
                 error = "Las contraseñas no coinciden";

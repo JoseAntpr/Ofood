@@ -87,6 +87,38 @@ section::before,section::after {
     position:relative;
 }
 
+#registro{
+    background-image:url(../img/nightOpacity.jpg);
+    /*-webkit-background-size:@@prefixmycss->No equivalent;*/
+    -moz-background-size:cover;
+    /*-o-background-size:@@prefixmycss->No equivalent;*/
+    background-size:cover;
+    background-position:center center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    position:relative;
+    height: 599px;
+    
+}
+
+#camposRegistro{
+    top: 135px;
+    left: 50px;
+    background-color: #443E47;
+    padding-bottom: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
+}
+
+#textoRegistro{
+    text-align: left;
+    margin-left: 15px;
+    font-weight: bold;
+    color:white;
+}
+
+
 .buscador{
   border: 1px solid #DBE1EB;
   text-align: center;
@@ -136,6 +168,25 @@ section::before,section::after {
     border-radius: 3px;
     color: white;
     padding: .5em 1em;
+}
+
+.boton-salir{
+    margin-left: 31px;
+    background-color: #ED0121;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 4.25em;
+}
+
+.boton-pagina-registro{
+    display:block;
+    background-color: #94D500;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 1em;
+    font-size: 18px;
 }
 
 .account-drop-heading {
@@ -282,6 +333,18 @@ section::before,section::after {
     left:50%;
     margin-left:-40px;
 }
+
+.lead_2 {
+    font-size:17px;
+    line-height:24px;
+    font-weight:normal;
+    text-transform:uppercase;
+    margin-bottom:15px;
+    color: #2e2e2e;
+    font-weight: bold;
+    position:relative;
+}
+
 .story .col-wrapper {
     padding:0 10px;
 }
@@ -453,10 +516,10 @@ section::before,section::after {
     background-color: transparent;
 }
 .form-control {
-    height:38px;
-    font-size:14px;
+    height:44px;
+    font-size:18px;
     vertical-align:middle;
-    background-color:transparent;
+    
     -webkit-border-radius:2px;
     -webkit-border-radius:2px;
     -moz-border-radius:2px;
@@ -574,4 +637,74 @@ section::before,section::after {
         text-align: left;
         margin-top: 30px;
     }
+}
+
+/* ==========================================================================
+    12. Personalizado
+========================================================================== */
+
+#restaurant{
+    padding-top: 10px;
+}
+#order{
+     border: 1px solid #C5BDBD;
+     padding-bottom: 20px;
+}
+#order h3{
+    padding: 0 10px 0;
+    border-bottom: 1px solid #C5BDBD;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.separador-h-sup{
+    margin-bottom: 20px;
+    border-bottom: 1px solid #C5BDBD;
+}
+.separador-h-inf{
+    margin-top: 20px;
+    border-bottom: 1px solid #C5BDBD;
+}
+
+.item-restaurant h3{
+    padding-left: 30px;
+}
+
+.box{
+    display: flex;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    flex-direction: row;
+}
+.box-grow-1{
+    -moz-box-flex: 1;
+    flex-grow: 1;
+}
+.order-item{
+    padding: 5px 0 5px;
+}
+
+.oi-quantity{
+    padding: 0px 2px 0px 5px;
+}
+
+.drop-item{
+    margin: 3px 5px 0px 0px;
+    float: left;
+}
+
+.drop-item:hover{
+    color: #D20B0B;
+    cursor:pointer;
+    cursor: hand;
+}
+
+.summary{
+    margin: 10px 0px;
+    padding: 0px 20px;
+}
+
+.btn-order{
+    width: 100%;
+    color: #000;
 }

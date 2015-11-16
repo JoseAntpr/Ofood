@@ -2716,7 +2716,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
     z-index:1000;
     float:left;
     min-width:220px;
-    min-height: 246px;
+    min-height: 78px;
     padding:5px 0;
     margin:2px 0 0;
     font-size:14px;
@@ -2724,7 +2724,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
     background-color:#443E47;
     border:1px solid #ccc;
     border:1px solid rgba(0,0,0,0.15);
-    border-radius:4px;
+    border-radius:8px;
     -webkit-box-shadow:0 6px 12px rgba(0,0,0,0.175);
     box-shadow:0 6px 12px rgba(0,0,0,0.175);
     background-clip:padding-box
