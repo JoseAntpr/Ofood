@@ -202,6 +202,10 @@ public class LoginBean {
 
     }
     
+    public String inicio(){
+        return "index";
+    }
+    
     public String salir(){
         setInfoSession("Iniciar sesión...");
         setName("");
