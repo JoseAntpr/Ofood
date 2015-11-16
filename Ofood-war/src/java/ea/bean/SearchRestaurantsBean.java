@@ -32,28 +32,29 @@ public class SearchRestaurantsBean {
     private List<Restaurant> restaurantList;
     private String entrega;
     private int totalRestaurantes;
-    
+    private String zipCode;
     /**
      * Creates a new instance of SearchRestaurantsBean
      */
     public SearchRestaurantsBean() {
     }
     
-    @PostConstruct
-    public void init(){
-        restaurantList=restaurantFacade.getRestaurantList("29005");
+    
+    public String buscar(){
+        restaurantList=restaurantFacade.getRestaurantList(zipCode);
         if(restaurantList!=null){
             totalRestaurantes=restaurantList.size();
             if(totalRestaurantes==1){
-                entrega=" restaurante que entrega en 29005, ";
+                entrega=" restaurante que entrega en , "+zipCode;
             }else{
-                entrega=" restaurantes que entregan en 29005, ";
+                entrega=" restaurantes que entregan en , "+zipCode;
             }
             entrega= entrega + restaurantList.get(0).getCity();
         }else{
             totalRestaurantes=0;
-            entrega=" restaurantes que entregan en 29005";
+            entrega=" restaurantes que entregan en "+zipCode;
         }
+        return null;
     }
 
     public LoginBean getLoginBean() {
@@ -94,6 +95,14 @@ public class SearchRestaurantsBean {
 
     public void setTotalRestaurantes(int totalRestaurantes) {
         this.totalRestaurantes = totalRestaurantes;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
     
     

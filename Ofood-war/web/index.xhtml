@@ -44,7 +44,8 @@
                 <div class="subtitle">
                     <!--<h4>AWESOME RESTAURANT THEME</h4>-->
                     <h:form>
-                        <h:inputText class="buscador" id="buscador"></h:inputText>
+                        <h:inputText class="buscador" id="buscador" value="#{searchRestaurantsBean.zipCode}" />
+                        <h:commandButton  action="#{searchRestaurantsBean.buscar()}">BUSCAR</h:commandButton>
                     </h:form>
                 </div>
             </div>
