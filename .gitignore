@@ -1,19 +1,14 @@
 /nbproject/private/
+/build/
+/dist/
 /Ofood-war/nbproject/private/
 /Ofood-ejb/nbproject/private/
 /Ofood-ejb/build/
 /Ofood-ejb/dist/
 /Ofood-war/build/
 /Ofood-war/dist/
-/build/
-/dist/
 
 # NetBeans specific #
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
 nbactions.xml
 nb-configuration.xml
 
@@ -24,4 +19,3 @@ nb-configuration.xml
 *.jar
 *.war
 *.ear
-

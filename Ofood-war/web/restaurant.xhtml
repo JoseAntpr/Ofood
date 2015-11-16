@@ -62,7 +62,7 @@
                     <div id="categories" class="col-md-3 col-sm-3">
                         <h3>Categorías</h3>
                         <div class="col-md-12 col-sm-12" >
-                            <c:forEach items="#{restaurantBean.itemCategoryList}" var="i">
+                            <c:forEach items="#{restaurantBean.restaurant.itemCategoryCollection}" var="i">
                                 <p>#{i.name}</p>
                             </c:forEach>
                         </div>
@@ -70,15 +70,15 @@
                     
                     <!-- Item List -->
                     <div id="items" class="col-md-6 col-sm-6">
-                        <c:forEach items="#{restaurantBean.itemCategoryList}" var="ic">
+                        <c:forEach items="#{restaurantBean.restaurant.itemCategoryCollection}" var="ic">
                             <h2>#{ic.name}</h2>
                             <c:forEach items="#{ic.itemCollection}" var="item">
                                 <div class="col-wrapper item-restaurant separador-h-sup">
                                     <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
                                     <div class="pull-right">
                                         <h:form>
-                                            <h:commandButton action="#{restaurantBean.addItem(item.id)}" class="fa fa-plus-circle" >
-                                                
+                                            <h:commandButton class="fa fa-plus-circle" >
+                                                <f:ajax render="order" listener="#{restaurantBean.addItem(item)}"/>
                                             </h:commandButton> 
                                         </h:form>
                                     </div>
@@ -94,12 +94,17 @@
                     <!-- Order -->
                     <div id="order" class="col-md-3 col-sm-3">
                         <h3>Tu pedido</h3>
+                        <h:panelGroup id="order">
                         <h:form>
                             <div class="col-md-12 col-sm-12">
                                 
                                 <c:forEach items="#{restaurantBean.purchaseOrder.itemCollection}" var="io">
                                     <div class="order-item box">
-                                        <div class="fa fa-minus-circle drop-item "></div>
+                                        <div>
+                                            <h:commandButton class="fa fa-minus-circle drop-item">
+                                                <f:ajax render="order" listener="#{restaurantBean.deleteItem(item)}"/>
+                                            </h:commandButton>
+                                        </div>
                                         <div class="oi-data">
                                             <div class="oi-name pull-left">
                                                 <span class="oi-quantity">2 x</span>
@@ -117,21 +122,22 @@
                                 <div class="summary">
                                     <div class="box">
                                         <div class="box-grow-1">Subtotal</div>
-                                        <div>7.90€</div>
+                                        <div>#{restaurantBean.purchaseOrder.bill}€</div>
                                     </div>
                                     <div class="box">
                                         <div class="box-grow-1">Gastos de envío</div>
-                                        <div>0.00€</div>
+                                        <div>1.00€</div>
                                     </div>
                                     <div class="box">
                                         <div class="box-grow-1 h4">Total</div>
-                                        <div class="h4">0.00€</div>
+                                        <div class="h4">#{restaurantBean.purchaseOrder.bill+1}€</div>
                                     </div>
                                 </div> <!-- /Precio -->
                                 <div class="separador-h-inf"></div>
                             </div>
-                            <button class="btn-warning btn-order"><h4>Hacer pedido</h4></button>                          
-                        </h:form>    
+                            <h:commandButton action="#{payBean.doPay()}" class="btn-warning btn-order" value="Hacer pedido"/>
+                        </h:form> 
+                        </h:panelGroup>
                     </div> <!-- /Order -->
                     <div class="clearfix visible-md"></div>
                     

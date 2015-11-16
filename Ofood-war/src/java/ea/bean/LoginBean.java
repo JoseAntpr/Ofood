@@ -10,7 +10,8 @@ import ea.entity.Item;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedList;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -51,10 +52,11 @@ public class LoginBean {
     
     @PostConstruct
     public void init(){
-    
-        // Temporalmente forzamos el user 1
-        //user = userFacade.find(1);
+
         infoSession = "Iniciar sesión...";
+        purchaseOrder = new PurchaseOrder();
+        purchaseOrder.setItemCollection(new LinkedList());
+        purchaseOrder.setBill(0.0f);
     }
 
     public User getUser() {
