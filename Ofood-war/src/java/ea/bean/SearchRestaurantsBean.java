@@ -56,6 +56,9 @@ public class SearchRestaurantsBean {
         }
         return "restaurantList";
     }
+    public String cargarRestaurante(){
+        return "index";
+    }
 
     public LoginBean getLoginBean() {
         return loginBean;

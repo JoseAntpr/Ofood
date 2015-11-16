@@ -114,31 +114,12 @@ public class RestaurantBean {
     }
     
     
-    public String cargarRestaurante(){
-            // Recuperar el usuario de la sesion
-            // Temporalmente
-   /*         user = loginBean.getUser();
-//            user = userFacade.find(1);
-
-            // Ya tenemos el id del restaurante
-            
-            restaurant =r ;
-
-            // Calculamos la media de la puntuación
-            mark = restaurantFacade.getRestaurantMark(r);
-
-            if (restaurant != null){
-                itemCategoryList = itemCategoryFacade.findItemCategoryFromRestaurant(r.getId());
-            }else{
-                System.out.println("Restaurante Nulo");
-            }
-            
-            purchaseOrder = loginBean.getPurchaseOrder();*/
-        return "restaurant";
-            
+    public String cargarRestaurante(Restaurant r){
+        restaurant =r;
         
+        
+        return "restaurant";
     }
-    
     @PreDestroy
     public String addItem(Integer itemId){
         if(itemId != null){

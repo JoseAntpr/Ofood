@@ -60,18 +60,20 @@
                     </div><!-- /Columna izquierda -->
                     
                     <!-- Item List -->
-                    <h:form>
+                    
                     <div id="items" class="col-md-6 col-sm-6">
-                        <c:forEach items="#{searchRestaurantsBean.restaurantList}" var="r">
+                        <h:form>
+                        <ui:repeat value="#{searchRestaurantsBean.restaurantList}" var="r">
                             <h2>#{r.name}</h2>
                             
                             <div class="col-wrapper item-restaurant separador-h-sup">
                                 <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i>&nbsp;&nbsp;</div>
                                 <div class="pull-right">
                                     
-                                       <!-- <h:commandButton  class="boton-vermenu" action="#{restaurantBean.cargarRestaurante()}" value="VER MENÚ">
-                                        </h:commandButton>-->
-                                    <h:commandLink class="boton-vermenu" action="#{restaurantBean.cargarRestaurante()}">VER MENÚ</h:commandLink>
+                                    <h:commandLink action="#{searchRestaurantsBean.cargarRestaurante()}" >
+                                       VER MENÚ
+                                     </h:commandLink>
+                                   
                                   
                                 </div>
                                 <h4>#{r.category}</h4>
@@ -80,9 +82,10 @@
                             </div>
                             <div class="clearfix"></div>
                             
-                        </c:forEach>
+                        </ui:repeat>
+                         </h:form>
                     </div> <!-- /Item List -->
-                    </h:form>
+                   
                     <!-- Columna derecha -->
                     <div id="columnaDerecha" class="col-md-3 col-sm-3">
                         
