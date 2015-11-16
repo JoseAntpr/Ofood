@@ -28,10 +28,6 @@ public class RestaurantBean {
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
     
-    @EJB
-    private RestaurantFacade restaurantFacade;
-   
-
     private float mark;
 
     /**
