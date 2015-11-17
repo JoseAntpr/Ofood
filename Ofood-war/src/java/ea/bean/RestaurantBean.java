@@ -86,13 +86,14 @@ public class RestaurantBean {
             boolean finded = false;
             for(int i=0; i<ioL.size() && finded == false; i++){
                 ItemOrder io = ioL.get(i);
-                if(io.equals(itemOrder)){
+                if(io.getItemId().equals(itemOrder.getItemId())){
                     io.setCount(io.getCount()-1);
                     finded = true;
+                    if(io.getCount() == 0){
+                        ioL.remove(i);
+                    }
                 }
-                if(io.getCount() == 0){
-                    ioL.remove(io);
-                }
+                
             }
             po.setBill(po.getBill()-itemOrder.getItemId().getPrice());
         }
