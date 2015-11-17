@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,6 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PurchaseOrder.findByBill", query = "SELECT p FROM PurchaseOrder p WHERE p.bill = :bill"),
     @NamedQuery(name = "PurchaseOrder.findByAddress", query = "SELECT p FROM PurchaseOrder p WHERE p.address = :address")})
 public class PurchaseOrder implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrderId")
+    private Collection<ItemOrder> itemOrderCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -179,6 +183,15 @@ public class PurchaseOrder implements Serializable {
     @Override
     public String toString() {
         return "ea.entity.PurchaseOrder[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<ItemOrder> getItemOrderCollection() {
+        return itemOrderCollection;
+    }
+
+    public void setItemOrderCollection(Collection<ItemOrder> itemOrderCollection) {
+        this.itemOrderCollection = itemOrderCollection;
     }
     
 }

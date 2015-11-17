@@ -56,4 +56,5 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
         
         return list;
     }
+    
 }

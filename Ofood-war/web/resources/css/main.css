@@ -746,3 +746,17 @@ section::before,section::after {
     width: 100%;
     color: #000;
 }
+
+.order-max-width{
+    max-width: 260px;
+}
+
+.order-width{
+    width: 260px;
+}
+
+.order-item-width{
+    width: 240px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

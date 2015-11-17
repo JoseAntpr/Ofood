@@ -36,7 +36,6 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
 
     public PurchaseOrderFacade() {
         super(PurchaseOrder.class);
