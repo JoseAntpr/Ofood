@@ -724,6 +724,7 @@ section::before,section::after {
 }
 .oi-data{
     width: 100%;
+    margin-top: 9px;
 }
 
 .drop-item{
@@ -762,6 +763,7 @@ section::before,section::after {
 }
 
 .item-price{
+    margin-top: 7px;
     margin-right: 20px;
 }
 
