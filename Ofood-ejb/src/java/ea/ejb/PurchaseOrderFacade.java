@@ -10,6 +10,7 @@ import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
 import java.util.Date;
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -53,6 +54,12 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
         userFacade.edit(u);
         
         r.getPurchaseOrderCollection().add(p);
+        restaurantFacade.edit(r);
+    }
+    
+    public void createPurchaseOrder(PurchaseOrder po, User u, Restaurant r){
+        create(po);
+        userFacade.edit(u);
         restaurantFacade.edit(r);
     }
 }

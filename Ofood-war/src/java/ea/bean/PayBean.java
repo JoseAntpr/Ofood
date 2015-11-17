@@ -5,9 +5,12 @@
  */
 package ea.bean;
 
+import ea.ejb.PurchaseOrderFacade;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
+import java.util.Date;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -19,12 +22,10 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean (name = "payBean")
 @RequestScoped
 public class PayBean {
+    @EJB
+    private PurchaseOrderFacade purchaseOrderFacade;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
-    
-    PurchaseOrder purchaseOrder;
-    Restaurant restaurant;
-    User user;
     
     /**
      * Creates a new instance of payBean
@@ -32,36 +33,42 @@ public class PayBean {
     public PayBean() {
     }
 
-    public PurchaseOrder getPurchaseOrder() {
-        return purchaseOrder;
+    public LoginBean getLoginBean() {
+        return loginBean;
     }
 
-    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrder = purchaseOrder;
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Integer doPurchaseOrderCreate(){
+        /* Falta comprobar si está registrado, 
+        si no lo está hay que mandarlo al registro y volver
+        si lo está  meter el purchase order de memoria en base de datos
+        cargarla de nuevo y coger su id para mostrarlo.
+        */
+        PurchaseOrder po = loginBean.getPurchaseOrder();
+        po.setDate(new Date());
+        po.setState("Pedido listo");
+        
+        // Registrar antes de seguir por aquí
+        
+        po.setAddress(loginBean.getUser().getAddress());
+        po.setRestaurantId(loginBean.getRestaurant());
+        po.setUserId(loginBean.getUser());
+        
+        loginBean.getRestaurant().getPurchaseOrderCollection().add(po);
+        
+        loginBean.getUser().getPurchaseOrderCollection().add(po);
+        
+        purchaseOrderFacade.createPurchaseOrder(po, loginBean.getUser(),
+                        loginBean.getRestaurant());
+               
+        
+        return po.getId();
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
-    
-    
     public String doPay(){
-        purchaseOrder = loginBean.getPurchaseOrder();
-        restaurant = loginBean.getRestaurant();
-        user = loginBean.getUser();
         return "pay";
     }
     

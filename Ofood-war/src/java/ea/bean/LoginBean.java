@@ -11,6 +11,7 @@ import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -58,6 +59,7 @@ public class LoginBean {
         purchaseOrder = new PurchaseOrder();
         purchaseOrder.setItemCollection(new LinkedList());
         purchaseOrder.setBill(0.0f);
+        purchaseOrder.setItemOrderCollection(new LinkedList());
     }
 
     public User getUser() {

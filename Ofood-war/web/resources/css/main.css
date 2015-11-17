@@ -760,3 +760,11 @@ section::before,section::after {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.item-price{
+    margin-right: 20px;
+}
+
+.order-summary{
+    width: 240px;
+}
