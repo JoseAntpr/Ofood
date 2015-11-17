@@ -35,5 +35,4 @@ public class ItemCategoryFacade extends AbstractFacade<ItemCategory> {
         q.setParameter("ID", id);
         return q.getResultList();
     }
-    
 }

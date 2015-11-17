@@ -47,25 +47,34 @@ public class PayBean {
         si lo está  meter el purchase order de memoria en base de datos
         cargarla de nuevo y coger su id para mostrarlo.
         */
-        PurchaseOrder po = loginBean.getPurchaseOrder();
-        po.setDate(new Date());
-        po.setState("Pedido listo");
         
-        // Registrar antes de seguir por aquí
+        PurchaseOrder po;
+        Integer poId = -1;
+        if (loginBean.getUser() != null){
+            po= loginBean.getPurchaseOrder();
+            po.setDate(new Date());
+            po.setState("Pedido listo");
+
+            // Registrar antes de seguir por aquí
+
+            po.setAddress(loginBean.getUser().getAddress());
+            po.setRestaurantId(loginBean.getRestaurant());
+            po.setUserId(loginBean.getUser());
+
+            loginBean.getRestaurant().getPurchaseOrderCollection().add(po);
+
+            loginBean.getUser().getPurchaseOrderCollection().add(po);
+
+            purchaseOrderFacade.createPurchaseOrder(po, loginBean.getUser(),
+                            loginBean.getRestaurant());
+            poId = po.getId();
+        }else{
+            /* IR A REGISTRO DE USUARIO Y VOLVER LLAMANDO AL MÉTODO payBan.doPurchaseOrderCreate()*/
+            
+            
+        }
         
-        po.setAddress(loginBean.getUser().getAddress());
-        po.setRestaurantId(loginBean.getRestaurant());
-        po.setUserId(loginBean.getUser());
-        
-        loginBean.getRestaurant().getPurchaseOrderCollection().add(po);
-        
-        loginBean.getUser().getPurchaseOrderCollection().add(po);
-        
-        purchaseOrderFacade.createPurchaseOrder(po, loginBean.getUser(),
-                        loginBean.getRestaurant());
-               
-        
-        return po.getId();
+        return poId;
     }
 
     public String doPay(){

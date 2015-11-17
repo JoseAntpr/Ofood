@@ -42,20 +42,20 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
         super(PurchaseOrder.class);
     }
     
-    public void addItem(Integer iId, PurchaseOrder p, User u, Restaurant r){
-        
-        Item i = itemFacade.find(iId);
-        p.getItemCollection().add(i);
-        edit(p);
-        
-        if(!u.getPurchaseOrderCollection().contains(p)){
-        u.getPurchaseOrderCollection().add(p);
-        }
-        userFacade.edit(u);
-        
-        r.getPurchaseOrderCollection().add(p);
-        restaurantFacade.edit(r);
-    }
+//    public void addItem(Integer iId, PurchaseOrder p, User u, Restaurant r){
+//        
+//        Item i = itemFacade.find(iId);
+//        p.getItemCollection().add(i);
+//        edit(p);
+//        
+//        if(!u.getPurchaseOrderCollection().contains(p)){
+//        u.getPurchaseOrderCollection().add(p);
+//        }
+//        userFacade.edit(u);
+//        
+//        r.getPurchaseOrderCollection().add(p);
+//        restaurantFacade.edit(r);
+//    }
     
     public void createPurchaseOrder(PurchaseOrder po, User u, Restaurant r){
         create(po);

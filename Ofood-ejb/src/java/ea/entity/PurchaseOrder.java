@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -44,8 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PurchaseOrder.findByBill", query = "SELECT p FROM PurchaseOrder p WHERE p.bill = :bill"),
     @NamedQuery(name = "PurchaseOrder.findByAddress", query = "SELECT p FROM PurchaseOrder p WHERE p.address = :address")})
 public class PurchaseOrder implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrderId")
-    private Collection<ItemOrder> itemOrderCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,14 +68,14 @@ public class PurchaseOrder implements Serializable {
     @Size(min = 1, max = 64)
     @Column(name = "address")
     private String address;
-    @ManyToMany(mappedBy = "purchaseOrderCollection")
-    private Collection<Item> itemCollection;
     @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Restaurant restaurantId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrderId")
+    private Collection<ItemOrder> itemOrderCollection;
 
     public PurchaseOrder() {
     }
@@ -135,15 +132,6 @@ public class PurchaseOrder implements Serializable {
         this.address = address;
     }
 
-    @XmlTransient
-    public Collection<Item> getItemCollection() {
-        return itemCollection;
-    }
-
-    public void setItemCollection(Collection<Item> itemCollection) {
-        this.itemCollection = itemCollection;
-    }
-
     public Restaurant getRestaurantId() {
         return restaurantId;
     }
@@ -158,6 +146,15 @@ public class PurchaseOrder implements Serializable {
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    @XmlTransient
+    public Collection<ItemOrder> getItemOrderCollection() {
+        return itemOrderCollection;
+    }
+
+    public void setItemOrderCollection(Collection<ItemOrder> itemOrderCollection) {
+        this.itemOrderCollection = itemOrderCollection;
     }
 
     @Override
@@ -183,15 +180,6 @@ public class PurchaseOrder implements Serializable {
     @Override
     public String toString() {
         return "ea.entity.PurchaseOrder[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<ItemOrder> getItemOrderCollection() {
-        return itemOrderCollection;
-    }
-
-    public void setItemOrderCollection(Collection<ItemOrder> itemOrderCollection) {
-        this.itemOrderCollection = itemOrderCollection;
     }
     
 }

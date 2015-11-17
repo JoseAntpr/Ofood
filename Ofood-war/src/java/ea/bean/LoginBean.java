@@ -57,7 +57,7 @@ public class LoginBean {
 
         infoSession = "Iniciar sesión...";
         purchaseOrder = new PurchaseOrder();
-        purchaseOrder.setItemCollection(new LinkedList());
+//        purchaseOrder.setItemCollection(new LinkedList());
         purchaseOrder.setBill(0.0f);
         purchaseOrder.setItemOrderCollection(new LinkedList());
     }
