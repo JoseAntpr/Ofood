@@ -46,14 +46,7 @@
             <section class="ss-style-top"></section>
             <div id="restaurant" class="container inner">
                 <!-- Info pedido --> 
-                <div class="row separador-h">
-                    <div class="col-md-6 col-sm-6">
-                        <h2 class="section-title text-left">Pedido pendiente de pago:</h2>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                       
-                    </div>
-                </div> <!-- /Info pedido -->
+               
 
                 <div class="row">
                     <!-- column left -->
@@ -63,11 +56,11 @@
 
                     <!-- Info -->
                     <div class="col-md-6 col-sm-6">
-                        
+                        <h2 class="section-title text-left">Pedido en proceso</h2>
                         <h:outputLabel><h2>#{payBean.mostrarMensaje()}</h2></h:outputLabel>
-                        <h:form>
-                            <h:commandButton rendered="#{!loginBean.pagado}" action="#{payBean.doPay()}" class="btn-success btn-order order-summary" value="Pagar"/>
-                            <h:commandButton rendered="#{loginBean.pagado}" action="#{loginBean.inicio()}" class="btn-success btn-order order-summary" value="Volver a inicio"/>
+                        <h:form class="margin-sup">
+                            <h:commandButton rendered="#{!loginBean.pagado}" action="#{payBean.doPay()}" class="btn btn-success btn-order order-summary" value="Pagar"/>
+                            <h:commandButton rendered="#{loginBean.pagado}" action="#{loginBean.inicio()}" class="btn btn-success btn-order order-summary" value="Volver a inicio"/>
                             
                         </h:form>
                         

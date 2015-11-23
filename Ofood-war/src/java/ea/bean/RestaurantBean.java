@@ -50,6 +50,10 @@ public class RestaurantBean {
     
     public String cargarRestaurante(Restaurant r){
         loginBean.setRestaurant(r);
+        PurchaseOrder po = new PurchaseOrder();
+        po.setBill(0.0f);
+        po.setItemOrderCollection(new LinkedList());
+        loginBean.setPurchaseOrder(po);
         return "restaurant";
     }
    

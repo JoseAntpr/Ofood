@@ -779,3 +779,7 @@ section::before,section::after {
 .order-summary{
     width: 240px;
 }
+
+.margin-sup{
+    margin-top: 80px;
+}

@@ -6,10 +6,13 @@
 package ea.ejb;
 
 import ea.entity.Item;
+import ea.entity.ItemOrder;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,6 +25,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
+    @EJB
+    private ItemOrderFacade itemOrderFacade;
     @EJB
     private ItemFacade itemFacade;
     @EJB
@@ -58,6 +63,10 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
 //    }
     
     public void createPurchaseOrder(PurchaseOrder po, User u, Restaurant r){
+        po.setState("Pedido listo");
+        po.getItemOrderCollection().stream().forEach((io) -> {
+            itemOrderFacade.create(io);
+        });
         create(po);
         userFacade.edit(u);
         restaurantFacade.edit(r);

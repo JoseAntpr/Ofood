@@ -58,6 +58,7 @@
                 </div> <!-- /Info Restaurante -->
 
                 <div class="row">
+                    <h:form>
                     <!-- Item Categories List -->
                     <div id="categories" class="col-md-3 col-sm-3">
                         <h3>Categorías</h3>
@@ -76,12 +77,11 @@
                                 <div class="col-wrapper item-restaurant separador-h-sup">
                                     <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
                                     <div class="pull-right">
-                                        <h:form>
-
+                                        
                                             <h:commandButton class="btn btn-success" value="+" >
                                                 <f:ajax render="order" listener="#{restaurantBean.addItem(item)}"/>
                                             </h:commandButton>
-                                        </h:form>
+                                        
                                     </div>
                                     <div class="pull-right item-price">
                                         <p>#{restaurantBean.priceItem(item)}€</p>
@@ -101,7 +101,7 @@
                         <div id="order-container" class="order-width order-max-width">
                             <h:panelGroup id="order" class="order-max-width pull-right">
                                 <h3>Tu pedido</h3>
-                                <h:form>
+                                
                                     <div class="order-list order-item-width">
                                         <c:forEach items="#{loginBean.purchaseOrder.itemOrderCollection}" var="io">
                                             <div class="order-item box">
@@ -143,12 +143,12 @@
                                         <div class="separador-h-inf order-summary"></div>
                                         <h:commandButton action="#{restaurantBean.doPay()}" class="btn-warning btn-order order-summary" value="Hacer pedido"/>
                                     </div>
-                                </h:form> 
+                                 
                             </h:panelGroup>
                         </div>
                     </div> <!-- /Order -->
                     <div class="clearfix visible-md"></div>
-
+                    </h:form>
                 </div>
             </div>
             <!-- /.container -->
