@@ -62,4 +62,9 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
         userFacade.edit(u);
         restaurantFacade.edit(r);
     }
+    
+    public PurchaseOrder findById(Integer id) {
+        PurchaseOrder po = (PurchaseOrder) em.createNamedQuery("findById").setParameter("id",id).getSingleResult();
+        return po;
+    }
 }

@@ -3,13 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"  
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       class="no-js">
     <h:head>
-        <title>Ofood</title>
-
         <!-- meta -->
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -26,51 +22,35 @@
 
         <!-- js -->
         <script src="resources/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+        <title>Ofood</title>
     </h:head>
     <h:body>
-
-        <ui:include src="menu.xhtml"/>
-
-       
-        <div id="registro">
+      <ui:include src="menu.xhtml"/>
+            <div id="registro">
             <div class="bg-overlay"></div>
             <div class="center text-center">
-                <div class="full col-sm-6" id="camposRegistro">
-                    <!-- content -->      
+                <div class="full col-sm-6" id="camposRegistro">  
                     <h:form>
                         <div class="row">                                                    
-                            <h1 id="textoRegistro">Registrar:</h1> 
-                            <div class="col-sm-5">
-                                <h:inputText class="form-control col-sm-4" value="#{loginBean.name}" p:type="name" p:placeholder="Nombre" /><br/>
-                            </div>
-                            <div class="col-sm-7">
-                                <h:inputText class="form-control" value="#{loginBean.address}" p:type="address" p:placeholder="Dirección" /><br/>
-                            </div>
-                            <div class="col-sm-4">
-                                <h:inputText class="form-control" value="#{loginBean.phone}" p:type="phone" p:placeholder="Teléfono" /><br/>
-                            </div>
+                            <h1 id="textoRegistro">Iniciar sesión</h1> 
                             <div class="col-sm-6">
                                 <h:inputText class="form-control" value="#{loginBean.email}" p:type="email" p:placeholder="Email" /><br/>
                             </div>
                             <div class="col-sm-4">
                                 <h:inputSecret value="#{loginBean.password}" class="form-control" p:type="password" p:placeholder="Password" /> <br/>  
-                            </div>
-                            <div class="col-sm-4">
-                                <h:inputSecret value="#{loginBean.passwordRepeat}" class="form-control" p:type="password" p:placeholder="Repetir password" /> <br/>  
-                            </div>                              
-                        </div><!--/row-->        
-                        <h:commandButton class="boton-pagina-registro" value="REGISTRAR" action="#{loginBean.registrarUsuario()}"/>
+                            </div>                         
+                        </div>
+                        <h:commandButton class="boton-usuario2" value="INICIAR SESIÓN" action="#{loginBean.checkUser()}"/>
+                         <h:commandButton class="boton-pagina-registro" value="REGISTRAR" action="#{loginBean.goRegistrer()}"/>
                     </h:form>  
-                </div><!-- /col-94-->
+                </div>
             </div>
             <div class="bottom text-center">
                 <a id="scrollDownArrow" href="#footer"><i class="fa fa-chevron-down"></i></a>
             </div>
         </div>
-         <!-- /#header -->
-
         <ui:include src="footer.xhtml"/>
-
         <script src="resources/js/jquery-2.1.3.min.js"></script>
         <script src="resources/js/jquery.actual.min.js"></script>
         <script src="resources/js/jquery.scrollTo.min.js"></script>

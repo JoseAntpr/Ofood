@@ -187,6 +187,8 @@ public class LoginBean {
         }else{
             infoSession = "Hola " + user.getName();
         }
+        
+      
         return ruta;
     }
     
@@ -204,7 +206,9 @@ public class LoginBean {
                 usr = userFacade.nuevoUser(this.name, this.address, this.phone, this.email, this.password);
                 this.user = usr;
                 infoSession = "Hola " + user.getName();
-                ruta = "index";
+                
+                    ruta = "index";
+                
             }else{
                 error = "Las contraseñas no coinciden";
                 ruta = "registro";
@@ -221,7 +225,9 @@ public class LoginBean {
     public String inicio(){
         return "index";
     }
-    
+    public String goRegistrer() {
+        return "registro";
+    }
     public String salir(){
         setInfoSession("Iniciar sesión...");
         setName("");
@@ -236,6 +242,7 @@ public class LoginBean {
         setPurchaseOrder(null);
         setRestaurant(null);
         setItem(null);
+        
 
         return "index";
         

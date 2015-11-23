@@ -26,6 +26,7 @@ public class PayBean {
     private PurchaseOrderFacade purchaseOrderFacade;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
+    public Integer poId;
     
     /**
      * Creates a new instance of payBean
@@ -49,36 +50,33 @@ public class PayBean {
         */
         
         PurchaseOrder po;
-        Integer poId = -1;
+         poId = -1;
         if (loginBean.getUser() != null){
             po= loginBean.getPurchaseOrder();
             po.setDate(new Date());
             po.setState("Pedido listo");
 
-            // Registrar antes de seguir por aquí
 
             po.setAddress(loginBean.getUser().getAddress());
             po.setRestaurantId(loginBean.getRestaurant());
             po.setUserId(loginBean.getUser());
-
             loginBean.getRestaurant().getPurchaseOrderCollection().add(po);
-
             loginBean.getUser().getPurchaseOrderCollection().add(po);
-
             purchaseOrderFacade.createPurchaseOrder(po, loginBean.getUser(),
                             loginBean.getRestaurant());
             poId = po.getId();
-        }else{
-            /* IR A REGISTRO DE USUARIO Y VOLVER LLAMANDO AL MÉTODO payBan.doPurchaseOrderCreate()*/
-            
-            
         }
         
         return poId;
     }
+    
+
 
     public String doPay(){
-        return "pay";
+   //     PurchaseOrder po = purchaseOrderFacade.findById(poId);
+      //  po.setState("Pagado");
+      
+        return "index";
     }
     
 }

@@ -127,7 +127,11 @@ public class RestaurantBean {
     }
     
     public String doPay(){
-        return "pay";
+        String ruta="iniciarSesion";
+        if(loginBean.getUser()!=null) {
+            ruta="pay";
+        } 
+        return ruta;
     }
     
 }

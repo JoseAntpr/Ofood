@@ -162,6 +162,15 @@ section::before,section::after {
     padding: .5em 1em;
 }
 
+.boton-usuario2{
+    background-color: #ED0121;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 1em;
+    font-size: 18px;
+}
+
 .boton-registro{
     margin-left: 31px;
     background-color: #94D500;
