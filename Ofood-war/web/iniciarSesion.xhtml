@@ -41,8 +41,8 @@
                                 <h:inputSecret value="#{loginBean.password}" class="form-control" p:type="password" p:placeholder="Password" /> <br/>  
                             </div>                         
                         </div>
-                        <h:commandButton class="boton-usuario2" value="INICIAR SESIÓN" action="#{loginBean.checkUser()}"/>
-                         <h:commandButton class="boton-pagina-registro" value="REGISTRAR" action="#{loginBean.goRegistrer()}"/>
+                        <h:commandButton class="boton-usuario2" value="INICIAR SESIÓN" action="#{loginBean.checkUser(true)}"/>
+                        <h:commandButton class="boton-pagina-registro" value="REGISTRAR" action="#{loginBean.registro(true)}"/>
                     </h:form>  
                 </div>
             </div>

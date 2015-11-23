@@ -40,10 +40,14 @@ public class LoginBean {
     private User user=null;
     String error;
     
+    
     private PurchaseOrder purchaseOrder;
     private Restaurant restaurant;
     private Item item;
     private List<Restaurant> listRestaurant;
+    
+    private boolean fromOrder;
+    private boolean pagado;
     
     
     /**
@@ -60,6 +64,7 @@ public class LoginBean {
 //        purchaseOrder.setItemCollection(new LinkedList());
         purchaseOrder.setBill(0.0f);
         purchaseOrder.setItemOrderCollection(new LinkedList());
+        pagado = false;
     }
 
     public User getUser() {
@@ -72,6 +77,22 @@ public class LoginBean {
 
     public List<Restaurant> getListRestaurant() {
         return listRestaurant;
+    }
+
+    public boolean getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
+    }
+
+    public boolean isFromOrder() {
+        return fromOrder;
+    }
+
+    public void setFromOrder(boolean fromOrder) {
+        this.fromOrder = fromOrder;
     }
 
     public void setListRestaurant(List<Restaurant> listRestaurant) {
@@ -179,20 +200,26 @@ public class LoginBean {
     
     
     
-    public String checkUser(){
+    public String checkUser(boolean order){
         String ruta = "index";
         user = userFacade.login(email, password);
         if(user == null){
             error = "El usuario o contraseña son erroneos";
+            if(order == true){
+                ruta = "iniciarSesion";
+            }
         }else{
             infoSession = "Hola " + user.getName();
+            if(order == true){
+                ruta = "pay";
+            }
         }
         
-      
         return ruta;
     }
     
-    public String registro(){
+    public String registro(boolean order){
+        fromOrder = order;
         return "registro";
     }
     
@@ -206,8 +233,12 @@ public class LoginBean {
                 usr = userFacade.nuevoUser(this.name, this.address, this.phone, this.email, this.password);
                 this.user = usr;
                 infoSession = "Hola " + user.getName();
-                
-                    ruta = "index";
+                    if(fromOrder == true){
+                        ruta = "pay";
+                    }else{
+                        ruta = "index";
+                    }
+                    fromOrder = false;
                 
             }else{
                 error = "Las contraseñas no coinciden";
@@ -217,16 +248,12 @@ public class LoginBean {
             error = "El email ya esta registrado en nuestra red social.";
             ruta = "registro";
         }
-
         return ruta;
 
     }
     
     public String inicio(){
         return "index";
-    }
-    public String goRegistrer() {
-        return "registro";
     }
     public String salir(){
         setInfoSession("Iniciar sesión...");

@@ -48,7 +48,7 @@
                 <!-- Info pedido --> 
                 <div class="row separador-h">
                     <div class="col-md-6 col-sm-6">
-                        <h2 class="section-title text-left">Identificador del pedido: #{payBean.doPurchaseOrderCreate()}</h2>
+                        <h2 class="section-title text-left">Pedido pendiente de pago:</h2>
                     </div>
                     <div class="col-md-6 col-sm-6">
                        
@@ -63,10 +63,12 @@
 
                     <!-- Info -->
                     <div class="col-md-6 col-sm-6">
-                        <h2>Ya puede realizar el pago</h2>
-                        <h3>Su pedido llegará en 20 minutos</h3>
+                        
+                        <h:outputLabel><h2>#{payBean.mostrarMensaje()}</h2></h:outputLabel>
                         <h:form>
-                            <h:commandButton action="#{payBean.doPay()}" class="btn-success btn-order order-summary" value="Pagar"/>
+                            <h:commandButton rendered="#{!loginBean.pagado}" action="#{payBean.doPay()}" class="btn-success btn-order order-summary" value="Pagar"/>
+                            <h:commandButton rendered="#{loginBean.pagado}" action="#{loginBean.inicio()}" class="btn-success btn-order order-summary" value="Volver a inicio"/>
+                            
                         </h:form>
                         
                     </div> <!-- /Info -->

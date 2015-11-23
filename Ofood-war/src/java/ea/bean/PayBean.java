@@ -42,7 +42,7 @@ public class PayBean {
         this.loginBean = loginBean;
     }
 
-    public Integer doPurchaseOrderCreate(){
+    public void doPurchaseOrderCreate(){
         /* Falta comprobar si está registrado, 
         si no lo está hay que mandarlo al registro y volver
         si lo está  meter el purchase order de memoria en base de datos
@@ -64,19 +64,23 @@ public class PayBean {
             loginBean.getUser().getPurchaseOrderCollection().add(po);
             purchaseOrderFacade.createPurchaseOrder(po, loginBean.getUser(),
                             loginBean.getRestaurant());
-            poId = po.getId();
         }
-        
-        return poId;
     }
     
-
+    public String mostrarMensaje(){
+        String res = null;
+        if(loginBean.getPagado()){
+            res = "Su pedido ha sido realizado, llegará en 20 minutos";
+        }else{
+            res = "Su pedido está pendiente de pago";
+        }
+        return res;
+    }
 
     public String doPay(){
-   //     PurchaseOrder po = purchaseOrderFacade.findById(poId);
-      //  po.setState("Pagado");
-      
-        return "index";
+        doPurchaseOrderCreate();
+        loginBean.setPagado(true);
+        return "pay";
     }
     
 }
