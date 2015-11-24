@@ -54,6 +54,7 @@ public class RestaurantBean {
         po.setBill(0.0f);
         po.setItemOrderCollection(new LinkedList());
         loginBean.setPurchaseOrder(po);
+        
         return "restaurant";
     }
    
