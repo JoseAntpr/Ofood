@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ItemOrder.findAll", query = "SELECT i FROM ItemOrder i"),
     @NamedQuery(name = "ItemOrder.findById", query = "SELECT i FROM ItemOrder i WHERE i.id = :id"),
-    @NamedQuery(name = "ItemOrder.findByCount", query = "SELECT i FROM ItemOrder i WHERE i.count = :count")})
+    @NamedQuery(name = "ItemOrder.findByCount", query = "SELECT i FROM ItemOrder i WHERE i.count = :count")
+})
 public class ItemOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -116,6 +117,7 @@ public class ItemOrder implements Serializable {
     @Override
     public String toString() {
         return "ea.entity.ItemOrder[ id=" + id + " ]";
+  
     }
     
 }
