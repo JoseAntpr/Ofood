@@ -104,7 +104,11 @@ public class RestaurantBean {
     }
     
     public float mark(){
-        return restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
+        float mark=restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
+        if(mark==0.0){
+            mark=0;
+        }
+        return mark;
     }
     
     public String priceItem(Item item){
@@ -132,9 +136,15 @@ public class RestaurantBean {
     
     public String doPay(){
         String ruta="iniciarSesion";
-        if(loginBean.getUser()!=null) {
+        
+        if(loginBean.getUser()!=null) { //Si hay usuario logeado
             ruta="pay";
         } 
+        
+        if(loginBean.getPurchaseOrder().getItemOrderCollection().isEmpty()){ //Si no hay item en el order
+            ruta="restaurant";
+        }
+        
         return ruta;
     }
     

@@ -38,7 +38,10 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
         for(Review re : l){
             mark += re.getMark();
         }
-        return mark / l.size();
+        if(!l.isEmpty()){
+            mark=mark / l.size();
+        }
+        return mark;
     }
     
     public List<Restaurant> getRestaurantList(String zipcode){

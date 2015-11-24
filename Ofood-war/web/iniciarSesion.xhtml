@@ -30,17 +30,19 @@
             <div id="registro">
             <div class="bg-overlay"></div>
             <div class="center text-center">
-                <div class="full col-sm-10" id="camposRegistro">  
+                <div class="full col-sm-7" id="camposRegistro">  
                     <h:form>
                         <div class="row">                                                    
                             <h1 id="textoRegistro">Iniciar sesión</h1> 
-                            <div class="col-sm-6 pull-left">
+                            <div class="col-sm-5 pull-left">
                                 <h:inputText class="form-control" value="#{loginBean.email}" p:type="email" p:placeholder="Email" /><br/>
                             </div>
-                            <div class="col-sm-3 pull-left">
+                            <div class="col-sm-4 pull-left">
                                 <h:inputSecret value="#{loginBean.password}" class="form-control" p:type="password" p:placeholder="Password" /> <br/>  
                             </div> 
+                            <div class="col-sm-3 pull-left">
                             <h:commandButton class="boton-usuario2 pull-right" value="INICIAR SESIÓN" action="#{loginBean.checkUser(true)}"/>
+                            </div>
                         </div>
                         
                         <h:commandButton class="boton-pagina-registro" value="REGISTRAR" action="#{loginBean.registro(true)}"/>

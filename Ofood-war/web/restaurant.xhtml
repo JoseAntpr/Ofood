@@ -78,7 +78,7 @@
                                     <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
                                     <div class="pull-right">
                                         
-                                            <h:commandButton class="btn btn-success" value="+" >
+                                            <h:commandButton class="botonAddDelete btn btn-success" value="+" >
                                                 <f:ajax render="order" listener="#{restaurantBean.addItem(item)}"/>
                                             </h:commandButton>
                                         
@@ -106,7 +106,7 @@
                                         <c:forEach items="#{loginBean.purchaseOrder.itemOrderCollection}" var="io">
                                             <div class="order-item box">
                                                 <div class="drop-item">
-                                                    <h:commandButton class="btn btn-danger" value="-">
+                                                    <h:commandButton class="botonAddDelete btn btn-danger" value="-">
                                                         <f:ajax render="order" listener="#{restaurantBean.deleteItem(io)}"/>
                                                     </h:commandButton>
                                                 </div>
@@ -141,7 +141,9 @@
                                             </div>
                                         </div> <!-- /Precio -->
                                         <div class="separador-h-inf order-summary"></div>
-                                        <h:commandButton action="#{restaurantBean.doPay()}" class="btn-warning btn-order order-summary" value="Hacer pedido"/>
+                                        <c:if test="#{loginBean.restaurant.itemCategoryCollection.size()!=0}">
+                                        <h:commandButton action="#{restaurantBean.doPay()}" class="btn btn-warning btn-order order-summary" value="Hacer pedido"/>
+                                        </c:if>
                                     </div>
                                  
                             </h:panelGroup>

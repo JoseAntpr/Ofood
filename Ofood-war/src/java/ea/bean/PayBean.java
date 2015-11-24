@@ -56,14 +56,13 @@ public class PayBean {
             po.setDate(new Date());
             po.setState("Pedido listo");
 
-
             po.setAddress(loginBean.getUser().getAddress());
             po.setRestaurantId(loginBean.getRestaurant());
             po.setUserId(loginBean.getUser());
             loginBean.getRestaurant().getPurchaseOrderCollection().add(po);
             loginBean.getUser().getPurchaseOrderCollection().add(po);
             purchaseOrderFacade.createPurchaseOrder(po, loginBean.getUser(),
-                            loginBean.getRestaurant());
+            loginBean.getRestaurant());
         }
     }
     

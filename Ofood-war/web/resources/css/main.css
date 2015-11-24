@@ -199,6 +199,13 @@ section::before,section::after {
     font-size: 18px;
 }
 
+.botonAddDelete{
+    font-size: 21px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-weight: bold;
+}
+
 .account-drop-heading {
     width: 100%;
     margin-top: 20px;
@@ -707,6 +714,7 @@ section::before,section::after {
 }
 .separador-h-inf{
     margin-top: 20px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #C5BDBD;
 }
 

@@ -211,6 +211,7 @@ public class LoginBean {
         }else{
             infoSession = "Hola " + user.getName();
             if(order == true){
+                setPagado(false);
                 ruta = "pay";
             }
         }
@@ -234,6 +235,7 @@ public class LoginBean {
                 this.user = usr;
                 infoSession = "Hola " + user.getName();
                     if(fromOrder == true){
+                        setPagado(false);
                         ruta = "pay";
                     }else{
                         ruta = "index";
@@ -253,8 +255,13 @@ public class LoginBean {
     }
     
     public String inicio(){
+        if(pagado){
+            pagado=false;
+        }
         return "index";
     }
+    
+
     public String salir(){
         setInfoSession("Iniciar sesión...");
         setName("");
@@ -270,7 +277,8 @@ public class LoginBean {
         setRestaurant(null);
         setItem(null);
         
-
+        setFromOrder(false);
+        setPagado(false);
         return "index";
         
     }
