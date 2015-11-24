@@ -28,16 +28,8 @@
                         </div>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#story">Story</a></li>
-                        <li><a href="#reservation">Reservation</a></li>
-                        <li><a href="#chefs">Our Chefs</a></li>
-
-
-                        <li><a href="#facts">Facts</a></li>
-                        <li><a href="#food-menu">Food Menu</a></li>                     
-
-                         
-                        <li class="dropdown" id="fat-menu"><a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">#{loginBean.infoSession}<b class="caret"></b></a>
+                        
+                        <li class="dropdown" id="fat-menu" style="float:right;"><a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">#{loginBean.infoSession}<b class="caret"></b></a>
                               
                             <ul class="dropdown-menu" id="dropdown-menu" aria-labelledby="drop3" role="menu" style="padding-top: 20px; padding-bottom: 20px;">                    
                                 <c:if test="#{loginBean.user!=null}">
@@ -52,7 +44,7 @@
                                     
                                     <h:form >                                 
                                     <li class="menu-boton" role="presentation">
-                                        <h:commandButton class="boton-registro" value="CREAR UNA CUENTA" action="#{loginBean.registro()}"></h:commandButton>
+                                        <h:commandButton class="boton-registro" value="CREAR UNA CUENTA" action="#{loginBean.registro(false)}"></h:commandButton>
                                     </li>
                                     </h:form>
                                     
@@ -64,7 +56,7 @@
                                         <li class="menu-usuario" role="presentation"><h:inputSecret id="password" value="#{loginBean.password}" class="input-usuario" tabindex="-1" role="menuitem" p:placeholder="Contraseña" ></h:inputSecret></li>
                                         <li class="menu-boton" role="presentation">
                                             <!--<button class="boton-usuario" value="INICIAR SESIÓN"></:button>-->
-                                            <h:commandButton class="boton-usuario" value="INICIAR SESIÓN" action="#{loginBean.checkUser()}"></h:commandButton>
+                                            <h:commandButton class="boton-usuario" value="INICIAR SESIÓN" action="#{loginBean.checkUser(false)}"></h:commandButton>
                                         </li>
 
                                     </h:form>
