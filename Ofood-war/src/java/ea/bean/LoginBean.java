@@ -10,8 +10,6 @@ import ea.entity.Item;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -27,9 +25,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean (name = "loginBean")
 @SessionScoped
 public class LoginBean {
+    
     @EJB
     private UserFacade userFacade;
-
+    
     private String infoSession;
     private String name;
     private String email;
@@ -58,15 +57,16 @@ public class LoginBean {
     
     @PostConstruct
     public void init(){
-
+      
         infoSession = "Iniciar sesión...";
         purchaseOrder = new PurchaseOrder();
 //        purchaseOrder.setItemCollection(new LinkedList());
         purchaseOrder.setBill(0.0f);
         purchaseOrder.setItemOrderCollection(new LinkedList());
+        
         pagado = false;
-    }
-
+    } 
+    
     public User getUser() {
         return user;
     }
@@ -283,10 +283,5 @@ public class LoginBean {
         
     }
     
-    @PreDestroy
-    public void mecagoento(){
-        String s = "s";
-        System.out.println("noooooooo");
-    }
     
 }
