@@ -18,6 +18,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -33,6 +34,7 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
     private RestaurantFacade restaurantFacade;
     @EJB
     private UserFacade userFacade;
+    
     
     
     @PersistenceContext(unitName = "Ofood-ejbPU")
@@ -75,5 +77,9 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
     public PurchaseOrder findById(Integer id) {
         PurchaseOrder po = (PurchaseOrder) em.createNamedQuery("findById").setParameter("id",id).getSingleResult();
         return po;
+    }
+    public Integer findTotalPurchaseOrderByZipCode(Integer zipcode){
+        Integer totalPurchase = (Integer) em.createNativeQuery("select count(p.id) from purchase_order p INNER JOIN  restaurant r ON p.restaurant_id=r.id where r.zipcode= ?").setParameter(1, zipcode).getSingleResult();
+        return totalPurchase;
     }
 }
