@@ -93,14 +93,13 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
     }
     
     public List<Object[]> findUserInRestaurant(){
-        Query query =em.createNamedQuery("findUserInRestaurant");
-        
+        Query query = em.createQuery("SELECT p.restaurantId.name, COUNT(DISTINCT p.userId) FROM PurchaseOrder p GROUP BY p.restaurantId");
         List<Object[]> lista= query.getResultList();
         
         return lista;
     }
     public Integer findTotalPurchaseOrderByZipCode(Integer zipcode){
-        Integer totalPurchase = (Integer) em.createNativeQuery("select count(p.id) from purchase_order p INNER JOIN  restaurant r ON p.restaurant_id=r.id where r.zipcode= ?").setParameter(1, zipcode).getSingleResult();
+        Integer totalPurchase = Integer.parseInt( em.createNativeQuery("select count(p.id) from purchase_order p INNER JOIN  restaurant r ON p.restaurant_id=r.id where r.zipcode= ?").setParameter(1, zipcode).getSingleResult().toString());
         return totalPurchase;
     }
 }
