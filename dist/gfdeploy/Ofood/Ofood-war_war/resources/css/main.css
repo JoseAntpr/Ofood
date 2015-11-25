@@ -162,6 +162,15 @@ section::before,section::after {
     padding: .5em 1em;
 }
 
+.boton-usuario2{
+    background-color: #ED0121;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    padding: .5em 1em;
+    font-size: 18px;
+}
+
 .boton-registro{
     margin-left: 31px;
     background-color: #94D500;
@@ -188,6 +197,13 @@ section::before,section::after {
     color: white;
     padding: .5em 1em;
     font-size: 18px;
+}
+
+.botonAddDelete{
+    font-size: 21px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-weight: bold;
 }
 
 .account-drop-heading {
@@ -698,6 +714,7 @@ section::before,section::after {
 }
 .separador-h-inf{
     margin-top: 20px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #C5BDBD;
 }
 
@@ -722,6 +739,10 @@ section::before,section::after {
 .oi-quantity{
     padding: 0px 2px 0px 5px;
 }
+.oi-data{
+    width: 100%;
+    margin-top: 9px;
+}
 
 .drop-item{
     margin: 3px 5px 0px 0px;
@@ -742,4 +763,31 @@ section::before,section::after {
 .btn-order{
     width: 100%;
     color: #000;
+}
+
+.order-max-width{
+    max-width: 260px;
+}
+
+.order-width{
+    width: 260px;
+}
+
+.order-item-width{
+    width: 240px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.item-price{
+    margin-top: 7px;
+    margin-right: 20px;
+}
+
+.order-summary{
+    width: 240px;
+}
+
+.margin-sup{
+    margin-top: 80px;
 }

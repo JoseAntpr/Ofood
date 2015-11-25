@@ -6,9 +6,11 @@
 package ea.ejb;
 
 import ea.entity.ItemOrder;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,20 @@ public class ItemOrderFacade extends AbstractFacade<ItemOrder> {
 
     public ItemOrderFacade() {
         super(ItemOrder.class);
+    }
+     
+    public List<Object[]> TopFiveFood(){
+       /* Query query = em.createQuery("select  from item_order,item "
+                + "where item_id<6 AND item_id=item.id group by item_id order by SUM(count) DESC");
+        List<String> topFive =null;
+        
+        topFive =( List<String>) query.getResultList();
+        return topFive;
+        */
+        
+        Query query = em.createQuery("select i,SUM(io.count) AS cantidad from Item i,ItemOrder io where i.id <6 AND i.id=io.id group by i.id ORDER BY cantidad");
+        List<Object[]> topfive=query.getResultList();
+        return topfive ;
     }
     
 }

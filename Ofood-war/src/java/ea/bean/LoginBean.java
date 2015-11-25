@@ -5,7 +5,7 @@
  */
 package ea.bean;
 
-import ea.ejb.PurchaseOrderFacade;
+import ea.ejb.ItemOrderFacade;
 import ea.ejb.UserFacade;
 import ea.entity.Item;
 import ea.entity.PurchaseOrder;
@@ -28,12 +28,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean (name = "loginBean")
 @SessionScoped
 public class LoginBean {
+    
     @EJB
     private UserFacade userFacade;
     
-    @EJB
-    private PurchaseOrderFacade purchaseOrderFacade;
-
     private String infoSession;
     private String name;
     private String email;
@@ -62,12 +60,13 @@ public class LoginBean {
     
     @PostConstruct
     public void init(){
-
+      
         infoSession = "Iniciar sesión...";
         purchaseOrder = new PurchaseOrder();
 //        purchaseOrder.setItemCollection(new LinkedList());
         purchaseOrder.setBill(0.0f);
         purchaseOrder.setItemOrderCollection(new LinkedList());
+        
         pagado = false;
     }
 
