@@ -7,7 +7,6 @@ package ea.ejb;
 
 import ea.entity.Restaurant;
 import ea.entity.Review;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,7 +49,7 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
     public List<Restaurant> getRestaurantList(String zipcode){
         Query query=em.createNamedQuery("Restaurant.findByZipcode");
         query.setParameter("zipcode", zipcode);
-        List<Restaurant> list=new ArrayList();
+        List<Restaurant> list=null;
         
         try {
             list = (List<Restaurant>) query.getResultList();
@@ -63,12 +62,16 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
         return list;
     }
     
-    public List<Object[]> getRestaurantPuntuationOrdered(){
-        // "select name from restaurant, review where restaurant_id = restaurant.id group by restaurant_id order by SUM(mark) DESC        
-        Query q = em.createQuery( "SELECT r.name, (SUM(re.mark)*1.0)/COUNT(re) as mark FROM Restaurant r, Review re "
-                                + "WHERE r.id = re.restaurantId.id "
-                                + "GROUP BY r.id ORDER BY mark DESC");
-        List<Object[]> list = new LinkedList();
+    public List<String> getRestaurantPuntuationOrdered(){
+//        q = em.createQuery("SELECT r FROM Restaurant r ORDER BY (SELECT SUM(re.mark) FROM r.reviewCollection re), DESC");
+//        q = em.createQuery("SELECT r FROM Restaurant r ORDER BY SUM(r.reviewCollection.mark), DESC");
+        /*
+        UPDATE Publisher pub SET pub.status = 'outstanding'
+        WHERE pub.revenue < 1000000 AND 20 > (SELECT COUNT(mag) FROM pub.magazines mag)
+        */
+        Query q = em.createNativeQuery("select name from restaurant, review where "
+                + "restaurant_id = restaurant.id group by restaurant_id order by SUM(mark) DESC");
+        List<String> list = new LinkedList();
         try {
             list = new LinkedList(q.getResultList());
         } catch (Exception ex) {
@@ -76,4 +79,5 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
         }
         return list;
     }
+    
 }
