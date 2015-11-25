@@ -5,6 +5,7 @@
  */
 package ea.bean;
 
+import ea.ejb.PurchaseOrderFacade;
 import ea.ejb.UserFacade;
 import ea.entity.Item;
 import ea.entity.PurchaseOrder;
@@ -29,6 +30,9 @@ import javax.faces.bean.SessionScoped;
 public class LoginBean {
     @EJB
     private UserFacade userFacade;
+    
+    @EJB
+    private PurchaseOrderFacade purchaseOrderFacade;
 
     private String infoSession;
     private String name;
@@ -67,6 +71,16 @@ public class LoginBean {
         pagado = false;
     }
 
+    public PurchaseOrderFacade getPurchaseOrderFacade() {
+        return purchaseOrderFacade;
+    }
+
+    public void setPurchaseOrderFacade(PurchaseOrderFacade purchaseOrderFacade) {
+        this.purchaseOrderFacade = purchaseOrderFacade;
+    }
+
+    
+    
     public User getUser() {
         return user;
     }
@@ -255,6 +269,7 @@ public class LoginBean {
     }
     
     public String inicio(){
+        purchaseOrderFacade.findOrderByDayInMonth(11);
         if(pagado){
             pagado=false;
         }
