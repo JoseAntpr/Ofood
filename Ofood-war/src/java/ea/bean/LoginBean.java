@@ -5,14 +5,11 @@
  */
 package ea.bean;
 
-import ea.ejb.ItemOrderFacade;
 import ea.ejb.UserFacade;
 import ea.entity.Item;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import ea.entity.User;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -68,8 +65,8 @@ public class LoginBean {
         purchaseOrder.setItemOrderCollection(new LinkedList());
         
         pagado = false;
-    }
-
+    } 
+    
     public User getUser() {
         return user;
     }
@@ -286,10 +283,5 @@ public class LoginBean {
         
     }
     
-    @PreDestroy
-    public void mecagoento(){
-        String s = "s";
-        System.out.println("noooooooo");
-    }
     
 }
