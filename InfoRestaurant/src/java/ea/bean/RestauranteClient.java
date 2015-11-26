@@ -96,6 +96,29 @@ public class RestauranteClient {
         return "index";
     }
 
+    private java.util.List<net.java.dev.jaxb.array.AnyTypeArray> getRestaurantPuntuationOrdered() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        ea.ws.OfoodWebService port = service_1.getOfoodWebServicePort();
+        return port.getRestaurantPuntuationOrdered();
+    }
+
+    private java.util.List<net.java.dev.jaxb.array.AnyTypeArray> findOrderByDayInMonth(int mes) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        ea.ws.OfoodWebService port = service_1.getOfoodWebServicePort();
+        return port.findOrderByDayInMonth(mes);
+    }
+
+    private java.util.List<net.java.dev.jaxb.array.AnyTypeArray> findUserInRestaurant() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        ea.ws.OfoodWebService port = service_1.getOfoodWebServicePort();
+        return port.findUserInRestaurant();
+    }
+
+    
+
     /**
      * Creates a new instance of RestauranteClient
      */
