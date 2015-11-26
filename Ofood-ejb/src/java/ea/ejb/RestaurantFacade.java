@@ -67,12 +67,8 @@ public class RestaurantFacade extends AbstractFacade<Restaurant> {
         Query q = em.createQuery( "SELECT r.name, (SUM(re.mark)*1.0)/COUNT(re) as mark FROM Restaurant r, Review re "
                                 + "WHERE r.id = re.restaurantId.id "
                                 + "GROUP BY r.id ORDER BY mark DESC");
-        List<Object[]> list = new LinkedList();
-        try {
-            list = new LinkedList(q.getResultList());
-        } catch (Exception ex) {
-            
-        }
+        List<Object[]> list = q.getResultList();
+        
         return list;
     }
     

@@ -32,7 +32,46 @@ public class RestauranteClient {
     private List<net.java.dev.jaxb.array.AnyTypeArray> topfood;
     private String zipCode;
     private Integer totalPedidos;
+    private List<net.java.dev.jaxb.array.AnyTypeArray> puntuationRestaurant;
+    private List<net.java.dev.jaxb.array.AnyTypeArray> orderByDay;
+    private List<net.java.dev.jaxb.array.AnyTypeArray> userInRestaurant;
+    private int mes;
 
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+    
+    
+
+    public List<AnyTypeArray> getPuntuationRestaurant() {
+        return puntuationRestaurant;
+    }
+
+    public void setPuntuationRestaurant(List<AnyTypeArray> puntuationRestaurant) {
+        this.puntuationRestaurant = puntuationRestaurant;
+    }
+
+    public List<AnyTypeArray> getOrderByDay() {
+        return orderByDay;
+    }
+
+    public void setOrderByDay(List<AnyTypeArray> orderByDay) {
+        this.orderByDay = orderByDay;
+    }
+
+    public List<AnyTypeArray> getUserInRestaurant() {
+        return userInRestaurant;
+    }
+
+    public void setUserInRestaurant(List<AnyTypeArray> userInRestaurant) {
+        this.userInRestaurant = userInRestaurant;
+    }
+
+    
     public Integer getTotalPedidos() {
         return totalPedidos;
     }
@@ -84,17 +123,7 @@ public class RestauranteClient {
         return port.findTotalPurchaseOrderByZipCode(zipCode);
     }
     
-    public String topFivePage(){
-       topfood= topFiveFood();
-        return "topFiveFoodPage";
-    }
-    public String inicio(){
-        return"index";
-    }
-    public String totalPurchaseOrder(){
-        totalPedidos = findTotalPurchaseOrderByZipCode(Integer.parseInt(zipCode));
-        return "index";
-    }
+    
 
     private java.util.List<net.java.dev.jaxb.array.AnyTypeArray> getRestaurantPuntuationOrdered() {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
@@ -116,6 +145,37 @@ public class RestauranteClient {
         ea.ws.OfoodWebService port = service_1.getOfoodWebServicePort();
         return port.findUserInRestaurant();
     }
+    public String topFivePage(){
+       topfood= topFiveFood();
+        return "topFiveFoodPage";
+    }
+    public String inicio(){
+        totalPedidos=null;
+        return"index";
+    }
+    public String totalPurchaseOrder(){
+        totalPedidos=null;
+        totalPedidos = findTotalPurchaseOrderByZipCode(Integer.parseInt(zipCode));
+        return "index";
+    }
+    public String puntuationOrdered (){
+        puntuationRestaurant = getRestaurantPuntuationOrdered();
+        return "puntuationOrderedRestaurant";
+    }
+    public String orderByDay(){
+        orderByDay = findOrderByDayInMonth(mes);
+        return"orderByMonthPage";
+    }
+    public String userInRestaurant(){
+
+        userInRestaurant =  findUserInRestaurant();
+        return "userInRestaurantPage";
+    }
+    public String indextoOrderByDay(){
+        orderByDay = null;
+        return "orderByMonthPage";
+    }
+    
 
     
 

@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta charset="UTF-8"/>
         <title>Info Restaurant</title>
@@ -39,9 +40,9 @@
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
                             <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">INICIO</h:commandLink></li>
                             <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Five</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Puntuation Restaurant</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Order in Month</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Total client Restaurant</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top Puntuation Restaurant</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Order in Month</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Total client Restaurant</h:commandLink> </li>
                             
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -55,15 +56,15 @@
                 <div class="col-md-7 col-md-offset-3">
                     <h2 class="top-title">InfoRestaurant</h2>
                     <hr></hr>
-                     <h:form>
-                         <h:inputText class="buscador" id="buscador" value="#{restauranteClient.zipCode}" />
-                         <h:commandButton class="boton-inicio" value="BUSCAR" action="#{restauranteClient.totalPurchaseOrder()}"></h:commandButton>
-                    </h:form>
                 </div>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <h1 >TOTAL PEDIDOS : #{restauranteClient.totalPedidos}</h1>
+            <ui:repeat value="#{restauranteClient.userInRestaurant}" var="u">
+                <ul>
+                    <li><h2>#{u.item.get(0)} : #{u.item.get(1)}</h2></li>
+                </ul> 
+            </ui:repeat>
             
             
         </div>
