@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta charset="UTF-8"/>
         <title>Info Restaurant</title>
@@ -38,11 +39,11 @@
                     <h:form>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">INICIO</h:commandLink></li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Five</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top Puntuation Restaurant</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Order in Month</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Total client Restaurant</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">Inicio</h:commandLink></li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top 5 comidas</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top restaurantes</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Pedidos por mes</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Usuarios por restaurante</h:commandLink> </li>
                             
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -57,17 +58,32 @@
                     <h2 class="top-title">InfoRestaurant</h2>
                     <hr></hr>
                      <h:form>
-                         <h:inputText class="form-control col-md-8 buscador" id="buscador" value="#{restauranteClient.zipCode}" />
-                         <h:commandButton class="btn btn-warning col-md-4 boton-inicio" value="BUSCAR" action="#{restauranteClient.totalPurchaseOrder()}"></h:commandButton>
+                         <h:inputText class="form-control col-md-8 buscador" id="buscador" value="#{restauranteClient.zipCode}" p:placeholder="Introduzca un código postal (Ej: 29005)"/>
+                         <h:commandButton class="btn btn-warning col-md-3 boton-inicio" value="BUSCAR" action="#{restauranteClient.totalPurchaseOrder()}" style="margin-left: 20px"></h:commandButton>
                     </h:form>
                 </div>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <h1 >TOTAL PEDIDOS : #{restauranteClient.totalPedidos}</h1>
-            
-            
+        <div class="light-wrapper" id="story">
+            <div id="bloque" class="container inner">
+                <div id="bordetitulo" class="row separador-h">
+                    <div class="col-md-12 col-sm-12">
+                        <p id="titulo">Número de pedidos por código postal:</p>
+                    </div>
+                </div>
+                
+                <div id="bloqueResultado">
+                    <div id="columnaIzquierda" class="col-md-3 col-sm-3">
+                    </div>
+
+                    <div id="items" class="col-md-6 col-sm-6">
+                        <h2>Total: #{restauranteClient.totalPedidos}</h2>                     
+                    </div>
+                </div>
+            </div>
         </div>
+        
+
         
         <ui:include src="footer.xhtml"/>
         

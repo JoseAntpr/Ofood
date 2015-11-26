@@ -38,12 +38,11 @@
                     <h:form>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">INICIO</h:commandLink></li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Five</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top Puntuation Restaurant</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Order in Month</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Total client Restaurant</h:commandLink> </li>
-                            
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">Inicio</h:commandLink></li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top 5 comidas</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top restaurantes</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Pedidos por mes</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Usuarios por restaurante</h:commandLink> </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                  </h:form>
@@ -57,7 +56,7 @@
             <div id="bloque" class="container inner">
                 <div id="bordetitulo" class="row separador-h">
                     <div class="col-md-12 col-sm-12">
-                        <p id="titulo">Clientes de un restaurante:</p>
+                        <p id="titulo">Usuarios de cada restaurante:</p>
                     </div>
                 </div>
                 
@@ -75,28 +74,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- ============ Social Section  ============= -->
-      
-        <section class="social_connect">
-            <div class="text-content container"> 
-                <div class="col-md-6">
-                    <span class="social_heading">FOLLOW</span>
-                    <ul class="social_icons">
-                        <li><a class="icon-twitter color_animation" href="#" target="_blank"></a></li>
-                        <li><a class="icon-github color_animation" href="#" target="_blank"></a></li>
-                        <li><a class="icon-linkedin color_animation" href="#" target="_blank"></a></li>
-                        <li><a class="icon-mail color_animation" href="#"></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <span class="social_heading">OR DIAL</span>
-                    <span class="social_info"><a class="color_animation" href="tel:941 335 652">941 335 652</a></span>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ============ Footer Section  ============= -->
 
         <ui:include src="footer.xhtml"/>
         

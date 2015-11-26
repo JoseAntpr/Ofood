@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta charset="UTF-8"/>
         <title>Info Restaurant</title>
@@ -38,12 +39,11 @@
                     <h:form>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">INICIO</h:commandLink></li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Five</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top Puntuation Restaurant</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Order in Month</h:commandLink> </li>
-                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Total client Restaurant</h:commandLink> </li>
-                            
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">Inicio</h:commandLink></li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top 5 comidas</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.puntuationOrdered()}">Top restaurantes</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.indextoOrderByDay()}">Pedidos por mes</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.userInRestaurant}">Usuarios por restaurante</h:commandLink> </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                  </h:form>
@@ -51,26 +51,35 @@
             </div><!-- /.container-fluid -->
         </nav>
          
-        <div id="top" class="starter_container bg">
-            <div class="follow_container">
-                <div class="col-md-7 col-md-offset-3">
-                    <h2 class="top-title">InfoRestaurant</h2>
-                    <hr></hr>
-                     <h:form>
-                         <h:inputText class="form-control col-md-8 buscador" id="buscador" value="#{restauranteClient.mes}" />
-                         <h:commandButton class="btn btn-warning col-md-4 boton-inicio" value="BUSCAR" action="#{restauranteClient.orderByDay}"></h:commandButton>
-                    </h:form>
-                </div>
+        <div id="top" class="starter_container bg" style="height:300px;">
+            <div class="col-md-7 col-md-offset-3" style="top:185px;">
+                 <h:form>
+                     <h:inputText class="form-control col-md-8 buscador" id="buscador" value="#{restauranteClient.mes}" p:placeholder="Introduzca un mes en número (Ej: 11)"/>
+                     <h:commandButton class="btn btn-warning col-md-2 boton-inicio" value="BUSCAR" action="#{restauranteClient.orderByDay}" style="margin-left: 25px;"></h:commandButton>
+                </h:form>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ui:repeat value="#{restauranteClient.orderByDay}" var="order">
-                <ul>
-                    <li><h2>#{order.item.get(0)} : #{order.item.get(1)}</h2></li>
-                </ul> 
-            </ui:repeat>
-            
-            
+        <div class="light-wrapper" id="story">
+            <div id="bloque" class="container inner">
+                <div id="bordetitulo" class="row separador-h">
+                    <div class="col-md-12 col-sm-12">
+                        <p id="titulo">Pedidos en un mes:</p>
+                    </div>
+                </div>
+                
+                <div id="bloqueResultado">
+                    <div id="columnaIzquierda" class="col-md-3 col-sm-3">
+                    </div>
+
+                    <div id="items" class="col-md-6 col-sm-6">
+                        <ui:repeat value="#{restauranteClient.orderByDay}" var="order">
+                            <ul>
+                                <li><h2>Día #{order.item.get(0)}: #{order.item.get(1)}</h2></li>
+                            </ul> 
+                        </ui:repeat>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <ui:include src="footer.xhtml"/>

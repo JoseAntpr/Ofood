@@ -35,13 +35,13 @@ public class RestauranteClient {
     private List<net.java.dev.jaxb.array.AnyTypeArray> puntuationRestaurant;
     private List<net.java.dev.jaxb.array.AnyTypeArray> orderByDay;
     private List<net.java.dev.jaxb.array.AnyTypeArray> userInRestaurant;
-    private int mes;
+    private String mes;
 
-    public int getMes() {
+    public String getMes() {
         return mes;
     }
 
-    public void setMes(int mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
     
@@ -163,7 +163,7 @@ public class RestauranteClient {
         return "puntuationOrderedRestaurant";
     }
     public String orderByDay(){
-        orderByDay = findOrderByDayInMonth(mes);
+        orderByDay = findOrderByDayInMonth(Integer.parseInt(mes));
         return"orderByMonthPage";
     }
     public String userInRestaurant(){
