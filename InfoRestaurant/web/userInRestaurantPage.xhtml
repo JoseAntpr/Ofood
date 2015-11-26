@@ -51,23 +51,31 @@
             </div><!-- /.container-fluid -->
         </nav>
          
-        <div id="top" class="starter_container bg">
-            <div class="follow_container">
-                <div class="col-md-7 col-md-offset-3">
-                    <h2 class="top-title">InfoRestaurant</h2>
-                    <hr></hr>
+        <div id="top" class="starter_container bg" style="height:300px;">
+        </div>      
+        <div class="light-wrapper" id="story">
+            <div id="bloque" class="container inner">
+                <div id="bordetitulo" class="row separador-h">
+                    <div class="col-md-12 col-sm-12">
+                        <p id="titulo">Clientes de un restaurante:</p>
+                    </div>
+                </div>
+                
+                <div id="bloqueResultado">
+                    <div id="columnaIzquierda" class="col-md-3 col-sm-3">
+                    </div>
+
+                    <div id="items" class="col-md-6 col-sm-6">
+                        <ui:repeat value="#{restauranteClient.userInRestaurant}" var="u">
+                            <ul>
+                                <li><h2>#{u.item.get(0)}: #{u.item.get(1)}</h2></li>
+                            </ul> 
+                        </ui:repeat>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ui:repeat value="#{restauranteClient.userInRestaurant}" var="u">
-                <ul>
-                    <li><h2>#{u.item.get(0)} : #{u.item.get(1)}</h2></li>
-                </ul> 
-            </ui:repeat>
-            
-            
-        </div>
+
         <!-- ============ Social Section  ============= -->
       
         <section class="social_connect">

@@ -193,6 +193,27 @@ li{
 /*========================
 INTRO CONTAINER
 =========================*/
+
+#bloque{
+    padding-bottom: 30px;
+    padding-top: 25px;
+}
+
+#titulo{
+    
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+#bordetitulo{
+    border-bottom: 1px solid #C5BDBD;
+}
+#bloqueResultado{
+    margin-top: 20px;
+}
+
 .starter_container {
     margin-top: -21px;
     padding: 0;
