@@ -9,7 +9,9 @@
 /Ofood-war/dist/
 
 /InfoRestaurant/nbproject/private/
-/InfoRestaurant/build/
+/InfoRestaurant/build/empty
+/InfoRestaurant/build/generated
+/InfoRestaurant/build/web
 /InfoRestaurant/dist/
 
 # NetBeans specific #
