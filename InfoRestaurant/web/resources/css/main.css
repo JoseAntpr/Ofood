@@ -858,3 +858,11 @@ MEDIA QUERIE DESKTOP
         font-size: 30px;
     }
 }
+
+#top{
+    margin-bottom:  70px;
+}
+
+.buscador{
+    width: 66.6667% !important;
+}
