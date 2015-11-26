@@ -39,7 +39,8 @@ public class ItemOrderFacade extends AbstractFacade<ItemOrder> {
         return topFive;
         */
         
-        Query query = em.createQuery("select i.name,SUM(io.count) AS cantidad from Item i,ItemOrder io where i.id <6 AND i.id=io.id group by i.id ORDER BY cantidad");
+        Query query = em.createNativeQuery("select i.name,SUM(io.count) AS cantidad from item i,\n" +
+"item_order io where i.id=io.item_id group by io.item_id ORDER BY cantidad DESC limit 5 ");
         List<Object[]> topfive=query.getResultList();
         return topfive ;
     }

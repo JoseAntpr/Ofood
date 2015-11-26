@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Info Restaurant</title>
+        <link rel="stylesheet" href="resources/css/normalize.css"/>
+        <link rel="stylesheet" href="resources/css/main.css" media="screen" type="text/css"/>
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" href="resources/css/bootstrap.css"/>
+        <link rel="stylesheet" href="resources/css/style-portfolio.css"/>
+        <link rel="stylesheet" href="resources/css/picto-foundry-food.css" />
+        <link rel="stylesheet" href="resources/css/jquery-ui.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="resources/css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="icon" href="favicon-1.ico" type="image/x-icon"/>
+    </h:head>
+    <h:body>
+        
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="row">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">InfoRestaurant</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <h:form>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav main-nav  clear navbar-right ">
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.inicio()}">INICIO</h:commandLink></li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Five</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Top Puntuation Restaurant</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Order in Month</h:commandLink> </li>
+                            <li><h:commandLink class="color_animation" action="#{restauranteClient.topFivePage()}">Total client Restaurant</h:commandLink> </li>
+                            
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                 </h:form>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+         
+        <div id="top" class="starter_container bg">
+            <div class="follow_container">
+                <div class="col-md-7 col-md-offset-3">
+                    <h2 class="top-title">InfoRestaurant</h2>
+                    <hr></hr>
+                     <h:form>
+                         <h:inputText class="buscador" id="buscador" value="#{restauranteClient.zipCode}" />
+                         <h:commandButton class="boton-inicio" value="BUSCAR" action="#{restauranteClient.totalPurchaseOrder()}"></h:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <h1 >TOTAL PEDIDOS : #{restauranteClient.totalPedidos}</h1>
+            
+            
+        </div>
+        <!-- ============ Social Section  ============= -->
+      
+        <section class="social_connect">
+            <div class="text-content container"> 
+                <div class="col-md-6">
+                    <span class="social_heading">FOLLOW</span>
+                    <ul class="social_icons">
+                        <li><a class="icon-twitter color_animation" href="#" target="_blank"></a></li>
+                        <li><a class="icon-github color_animation" href="#" target="_blank"></a></li>
+                        <li><a class="icon-linkedin color_animation" href="#" target="_blank"></a></li>
+                        <li><a class="icon-mail color_animation" href="#"></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <span class="social_heading">OR DIAL</span>
+                    <span class="social_info"><a class="color_animation" href="tel:941 335 652">941 335 652</a></span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ============ Footer Section  ============= -->
+
+        <footer class="sub_footer">
+            <div class="container">
+                <div class="col-md-4"><p class="sub-footer-text text-center">&copy; InfoRestaurant 2015, Theme by <a href="https://themewagon.com/">Ofood Team</a></p></div>
+                <div class="col-md-4"><p class="sub-footer-text text-center">Back to <a href="#top">TOP</a></p>
+                </div>
+                <div class="col-md-4"><p class="sub-footer-text text-center">Built With Care By <a href="#" target="_blank">Us</a></p></div>
+            </div>
+        </footer>
+        
+        <script type="text/javascript" src="resources/js/jquery-1.10.2.min.js"> </script>
+        <script type="text/javascript" src="resources/js/bootstrap.min.js" ></script>
+        <script type="text/javascript" src="resources/js/jquery-1.10.2.js"></script>     
+        <script type="text/javascript" src="resources/js/jquery.mixitup.min.js" ></script>
+        <script type="text/javascript" src="resources/js/main.js" ></script>
+    </h:body>
+</html>
+
+
+
