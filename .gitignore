@@ -8,6 +8,10 @@
 /Ofood-war/build/
 /Ofood-war/dist/
 
+/InfoRestaurant/nbproject/private/
+/InfoRestaurant/build/
+/InfoRestaurant/dist/
+
 # NetBeans specific #
 nbactions.xml
 nb-configuration.xml
