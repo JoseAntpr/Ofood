@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.ea/" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.ea/">
+
+<xs:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://localhost:8080/OfoodWebService/OfoodWebService?xsd=2"/>
+
+<xs:element name="findOrderByDayInMonth" type="tns:findOrderByDayInMonth"/>
+
+<xs:element name="findOrderByDayInMonthResponse" type="tns:findOrderByDayInMonthResponse"/>
+
+<xs:element name="findTotalPurchaseOrderByZipCode" type="tns:findTotalPurchaseOrderByZipCode"/>
+
+<xs:element name="findTotalPurchaseOrderByZipCodeResponse" type="tns:findTotalPurchaseOrderByZipCodeResponse"/>
+
+<xs:element name="findUserInRestaurant" type="tns:findUserInRestaurant"/>
+
+<xs:element name="findUserInRestaurantResponse" type="tns:findUserInRestaurantResponse"/>
+
+<xs:element name="getRestaurantPuntuationOrdered" type="tns:getRestaurantPuntuationOrdered"/>
+
+<xs:element name="getRestaurantPuntuationOrderedResponse" type="tns:getRestaurantPuntuationOrderedResponse"/>
+
+<xs:element name="topFiveFood" type="tns:topFiveFood"/>
+
+<xs:element name="topFiveFoodResponse" type="tns:topFiveFoodResponse"/>
+
+<xs:complexType name="findOrderByDayInMonth">
+<xs:sequence>
+<xs:element name="mes" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findOrderByDayInMonthResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:anyTypeArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findUserInRestaurant">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="findUserInRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:anyTypeArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRestaurantPuntuationOrdered">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getRestaurantPuntuationOrderedResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:anyTypeArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findTotalPurchaseOrderByZipCode">
+<xs:sequence>
+<xs:element name="zipCode" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findTotalPurchaseOrderByZipCodeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="topFiveFood">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="topFiveFoodResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:anyTypeArray" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
