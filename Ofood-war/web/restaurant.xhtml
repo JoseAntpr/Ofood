@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"  
@@ -26,6 +27,8 @@
 
         <!-- js -->
         <script src="resources/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
     </h:head>
     <h:body>
         <!--data-spy="scroll" data-target="#navbar" data-offset="120"-->
@@ -53,55 +56,58 @@
                         <p class="lead_2 text-left">#{loginBean.restaurant.category}</p>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <p class="lead_2 text-left pull-right h1">#{loginBean.restaurant.address}</p>
+                        
+                        <h:outputText class="lead_2 text-left pull-right h1" id="direc" value="#{loginBean.restaurant.address}"/>
                     </div>
                 </div> <!-- /Info Restaurante -->
 
                 <div class="row">
                     <h:form>
-                    <!-- Item Categories List -->
-                    <div id="categories" class="col-md-3 col-sm-3">
-                        <h3>Categorías</h3>
-                        <div class="col-md-12 col-sm-12" >
-                            <c:forEach items="#{loginBean.restaurant.itemCategoryCollection}" var="i">
-                                <p>#{i.name}</p>
-                            </c:forEach>
-                        </div>
-                    </div><!-- /Item Categories List -->
+                        <!-- Item Categories List -->
+                        <div id="categories" class="col-md-3 col-sm-3">
+                            <h3>Categorías</h3>
+                            <div class="col-md-12 col-sm-12" >
+                                <c:forEach items="#{loginBean.restaurant.itemCategoryCollection}" var="i">
+                                    <p>#{i.name}</p>
+                                </c:forEach>
+                            </div>
 
-                    <!-- Item List -->
-                    <div id="items" class="col-md-6 col-sm-6">
-                        <c:forEach items="#{loginBean.restaurant.itemCategoryCollection}" var="ic">
-                            <h2>#{ic.name}</h2>
-                            <c:forEach items="#{ic.itemCollection}" var="item">
-                                <div class="col-wrapper item-restaurant separador-h-sup">
-                                    <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
-                                    <div class="pull-right">
-                                        
+                        </div><!-- /Item Categories List -->
+
+                        <!-- Item List -->
+                        <div id="items" class="col-md-6 col-sm-6">
+                            <c:forEach items="#{loginBean.restaurant.itemCategoryCollection}" var="ic">
+                                <h2>#{ic.name}</h2>
+                                <c:forEach items="#{ic.itemCollection}" var="item">
+                                    <div class="col-wrapper item-restaurant separador-h-sup">
+                                        <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
+                                        <div class="pull-right">
+
                                             <h:commandButton class="botonAddDelete btn btn-success" value="+" >
                                                 <f:ajax render="order" listener="#{restaurantBean.addItem(item)}"/>
                                             </h:commandButton>
-                                        
-                                    </div>
-                                    <div class="pull-right item-price">
-                                        <p>#{restaurantBean.priceItem(item)}€</p>
-                                    </div>
-                                    <h3>#{item.name}</h3>
-                                    <p>#{item.description}</p>
 
-                                </div>
-                                <div class="clearfix"></div>
+                                        </div>
+                                        <div class="pull-right item-price">
+                                            <p>#{restaurantBean.priceItem(item)}€</p>
+                                        </div>
+                                        <h3>#{item.name}</h3>
+                                        <p>#{item.description}</p>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </c:forEach>
                             </c:forEach>
-                        </c:forEach>
-                    </div> <!-- /Item List -->
+                            <div id="map" style="height: 400px;width: 600px; margin-left: -22px; margin-top: 20px;"></div>
+                        </div> <!-- /Item List -->
 
-                    <!-- Order -->
-                    <div id="order" class="order-width pull-right">
-                        
-                        <div id="order-container" class="order-width order-max-width">
-                            <h:panelGroup id="order" class="order-max-width pull-right">
-                                <h3>Tu pedido</h3>
-                                
+                        <!-- Order -->
+                        <div id="order" class="order-width pull-right">
+
+                            <div id="order-container" class="order-width order-max-width">
+                                <h:panelGroup id="order" class="order-max-width pull-right">
+                                    <h3>Tu pedido</h3>
+
                                     <div class="order-list order-item-width">
                                         <c:forEach items="#{loginBean.purchaseOrder.itemOrderCollection}" var="io">
                                             <div class="order-item box">
@@ -142,14 +148,14 @@
                                         </div> <!-- /Precio -->
                                         <div class="separador-h-inf order-summary"></div>
                                         <c:if test="#{loginBean.restaurant.itemCategoryCollection.size()!=0}">
-                                        <h:commandButton action="#{restaurantBean.doPay()}" class="btn btn-warning btn-order order-summary" value="Hacer pedido"/>
+                                            <h:commandButton action="#{restaurantBean.doPay()}" class="btn btn-warning btn-order order-summary" value="Hacer pedido"/>
                                         </c:if>
                                     </div>
-                                 
-                            </h:panelGroup>
-                        </div>
-                    </div> <!-- /Order -->
-                    <div class="clearfix visible-md"></div>
+
+                                </h:panelGroup>
+                            </div>
+                        </div> <!-- /Order -->
+                        <div class="clearfix visible-md"></div>
                     </h:form>
                 </div>
             </div>
@@ -171,5 +177,34 @@
         <script src="resources/js/jquery.scrollTo.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
         <script src="resources/js/main.js"></script>
+
+        <script>
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: {lat: 40.43, lng: -3.82}
+                });
+                var geocoder = new google.maps.Geocoder();
+                geocodeAddress(geocoder, map);
+            }
+
+            function geocodeAddress(geocoder, resultsMap) {
+                var address = document.getElementById("direc").innerHTML;
+                geocoder.geocode({'address': address}, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        resultsMap.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: resultsMap,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE2WXFkt1E-mKixK9w6wUfO9gAceHU0dc&amp;signed_in=true&amp;callback=initMap" async="" defer=""></script>
+
+
     </h:body>
 </html>

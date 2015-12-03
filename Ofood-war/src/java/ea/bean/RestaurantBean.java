@@ -11,11 +11,8 @@ import ea.entity.ItemOrder;
 import ea.entity.PurchaseOrder;
 import ea.entity.Restaurant;
 import java.text.DecimalFormat;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -25,12 +22,13 @@ import javax.faces.bean.RequestScoped;
  *
  * @author Jesús
  */
-@ManagedBean (name = "restaurantBean")
+@ManagedBean(name = "restaurantBean")
 @RequestScoped
 public class RestaurantBean {
+
     @EJB
     private RestaurantFacade restaurantFacade;
-    
+
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
 
@@ -47,106 +45,107 @@ public class RestaurantBean {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
-    
-    public String cargarRestaurante(Restaurant r){
+
+    public String cargarRestaurante(Restaurant r) {
         loginBean.setRestaurant(r);
         PurchaseOrder po = new PurchaseOrder();
         po.setBill(0.0f);
         po.setItemOrderCollection(new LinkedList());
         loginBean.setPurchaseOrder(po);
-        
+
         return "restaurant";
     }
-   
-    
-    public void addItem(Item item){
-        if(item != null){
+
+    public void addItem(Item item) {
+        if (item != null) {
             PurchaseOrder po = loginBean.getPurchaseOrder();
             List<ItemOrder> ioL = (LinkedList<ItemOrder>) po.getItemOrderCollection(); // Set de ItemOrder
             boolean finded = false;
-            for(int i=0; i<ioL.size() && finded == false; i++){
+            for (int i = 0; i < ioL.size() && finded == false; i++) {
                 ItemOrder io = ioL.get(i);
-                if(io.getItemId().equals(item)){
-                    io.setCount(io.getCount()+1);
+                if (io.getItemId().equals(item)) {
+                    io.setCount(io.getCount() + 1);
                     finded = true;
                 }
             }
-            if(finded == false){
+            if (finded == false) {
                 ItemOrder io = new ItemOrder();
                 io.setItemId(item);
                 io.setPurchaseOrderId(po);
                 io.setCount(1);
                 ioL.add(io);
             }
-            
+
 //            po.getItemCollection().add(item);
-            po.setBill(po.getBill()+item.getPrice());
+            po.setBill(po.getBill() + item.getPrice());
         }
     }
-    
-    public void deleteItem(ItemOrder itemOrder){
-        if(itemOrder != null){
+
+    public void deleteItem(ItemOrder itemOrder) {
+        if (itemOrder != null) {
             PurchaseOrder po = loginBean.getPurchaseOrder();
             List<ItemOrder> ioL = (LinkedList<ItemOrder>) po.getItemOrderCollection(); // Set de ItemOrder
             boolean finded = false;
-            for(int i=0; i<ioL.size() && finded == false; i++){
+            for (int i = 0; i < ioL.size() && finded == false; i++) {
                 ItemOrder io = ioL.get(i);
-                if(io.getItemId().equals(itemOrder.getItemId())){
-                    io.setCount(io.getCount()-1);
+                if (io.getItemId().equals(itemOrder.getItemId())) {
+                    io.setCount(io.getCount() - 1);
                     finded = true;
-                    if(io.getCount() == 0){
+                    if (io.getCount() == 0) {
                         ioL.remove(i);
                     }
                 }
-                
+
             }
-            po.setBill(po.getBill()-itemOrder.getItemId().getPrice());
+            po.setBill(po.getBill() - itemOrder.getItemId().getPrice());
         }
     }
-    
-    public float mark(){
-        float mark=restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
-        if(mark==0.0){
-            mark=0;
+
+    public float mark() {
+        float mark = restaurantFacade.getRestaurantMark(loginBean.getRestaurant());
+        if (mark == 0.0) {
+            mark = 0;
         }
         return mark;
     }
-    
-    public String priceItem(Item item){
+
+    public String priceItem(Item item) {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(item.getPrice());
     }
-    
-    public String priceItemOrder(ItemOrder io){
+
+    public String priceItemOrder(ItemOrder io) {
         DecimalFormat df = new DecimalFormat("0.00");
         float number = io.getItemId().getPrice() * io.getCount();
         return df.format(number);
     }
-    
-    public String bill(){
+
+    public String bill() {
         DecimalFormat df = new DecimalFormat("0.00");
         float number = loginBean.getPurchaseOrder().getBill();
         return df.format(number);
     }
-    
-    public String totalAmount(){
+
+    public String totalAmount() {
         DecimalFormat df = new DecimalFormat("0.00");
-        float number = loginBean.getPurchaseOrder().getBill()+1;
+        float number = loginBean.getPurchaseOrder().getBill() + 1;
         return df.format(number);
     }
-    
-    public String doPay(){
-        String ruta="iniciarSesion";
-        
-        if(loginBean.getUser()!=null) { //Si hay usuario logeado
-            ruta="pay";
-        } 
-        
-        if(loginBean.getPurchaseOrder().getItemOrderCollection().isEmpty()){ //Si no hay item en el order
-            ruta="restaurant";
+
+    public String doPay() {
+        String ruta = "iniciarSesion";
+
+        if (loginBean.getUser() != null) { //Si hay usuario logeado
+            ruta = "pay";
         }
-        
+
+        if (loginBean.getPurchaseOrder().getItemOrderCollection().isEmpty()) { //Si no hay item en el order
+            ruta = "restaurant";
+        }
+
         return ruta;
     }
+
     
+
 }
