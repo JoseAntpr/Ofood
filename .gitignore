@@ -25,3 +25,5 @@ nb-configuration.xml
 *.jar
 *.war
 *.ear
+!/Ofood-war/web/WEB-INF/lib/gson-2.5.jar
+!/Ofood-war/web/WEB-INF/lib/jsonschema2pojo-core-0.4.17.jar

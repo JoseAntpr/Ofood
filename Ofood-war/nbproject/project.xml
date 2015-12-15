@@ -12,6 +12,18 @@
                 <library dirs="100">
                     <file>${reference.Ofood-ejb.dist}</file>
                 </library>
+                <library dirs="200">
+                    <file>${file.reference.FlickrResponse.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.gson-2.5.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.jsonschema2pojo-core-0.4.17.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>

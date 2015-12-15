@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author UNI
+ * @author Jesus
  */
 @Entity
 @Table(name = "item")
@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id"),
     @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name"),
     @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price"),
-    @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description ")})
+    @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description"),
+    @NamedQuery(name = "Item.findByFlickrId", query = "SELECT i FROM Item i WHERE i.flickrId = :flickrId")})
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,6 +60,9 @@ public class Item implements Serializable {
     @Size(max = 256)
     @Column(name = "description")
     private String description;
+    @Size(max = 25)
+    @Column(name = "flickr_id")
+    private String flickrId;
     @JoinTable(name = "container_ic", joinColumns = {
         @JoinColumn(name = "item_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "item_category_id", referencedColumnName = "id")})
@@ -115,6 +119,14 @@ public class Item implements Serializable {
         this.description = description;
     }
 
+    public String getFlickrId() {
+        return flickrId;
+    }
+
+    public void setFlickrId(String flickrId) {
+        this.flickrId = flickrId;
+    }
+    
     @XmlTransient
     public Collection<ItemCategory> getItemCategoryCollection() {
         return itemCategoryCollection;
@@ -131,7 +143,7 @@ public class Item implements Serializable {
     public void setRestaurantId(Restaurant restaurantId) {
         this.restaurantId = restaurantId;
     }
-
+    
     @XmlTransient
     public Collection<ItemOrder> getItemOrderCollection() {
         return itemOrderCollection;

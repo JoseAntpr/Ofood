@@ -17,7 +17,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author UNI
+ * @author Jesus
  */
 @Stateless
 public class RestaurantFacade extends AbstractFacade<Restaurant> {

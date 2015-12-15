@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author UNI
+ * @author Jesus
  */
 @Entity
 @Table(name = "restaurant")
@@ -161,8 +161,8 @@ public class Restaurant implements Serializable {
     public void setItemCollection(Collection<Item> itemCollection) {
         this.itemCollection = itemCollection;
     }
-
-    @XmlTransient
+    
+        @XmlTransient
     public Collection<PurchaseOrder> getPurchaseOrderCollection() {
         return purchaseOrderCollection;
     }

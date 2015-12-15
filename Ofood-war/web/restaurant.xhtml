@@ -80,7 +80,7 @@
                                 <h2>#{ic.name}</h2>
                                 <c:forEach items="#{ic.itemCollection}" var="item">
                                     <div class="col-wrapper item-restaurant separador-h-sup">
-                                        <div class="icon-wrapper pull-left"> <i class="fa fa-cutlery"></i></div>
+                                        <div class="icon-wrapper pull-left" style="padding-right: 12px;"> <i class="fa fa-cutlery"></i>   <img src="#{restaurantBean.findPhoto(item)}" style="height: 54px;"/> </div>
                                         <div class="pull-right">
 
                                             <h:commandButton class="botonAddDelete btn btn-success" value="+" >
